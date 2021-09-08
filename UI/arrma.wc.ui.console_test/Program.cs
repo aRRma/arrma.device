@@ -6,7 +6,9 @@ namespace arrma.wc.ui.console_test
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Console test arrma.wc.device.core!!!");
+
+            Console.ReadKey();
         }
     }
 }

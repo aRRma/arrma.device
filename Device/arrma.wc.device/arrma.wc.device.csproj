@@ -5,7 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\arrma.wc.device.core\arrma.wc.device.core.csproj" />
+    <Folder Include="Devices\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\arrma.wc.logger\arrma.wc.logger.csproj" />
+    <ProjectReference Include="..\..\services\arrma.wc.interfaces\arrma.wc.interfaces.csproj" />
+    <ProjectReference Include="..\arrma.wc.device.base\arrma.wc.device.base.csproj" />
   </ItemGroup>
 
 </Project>

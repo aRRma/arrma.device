@@ -4,4 +4,14 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="BaseDevices\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\arrma.wc.logger\arrma.wc.logger.csproj" />
+    <ProjectReference Include="..\..\services\arrma.wc.interfaces\arrma.wc.interfaces.csproj" />
+    <ProjectReference Include="..\arrma.wc.device.core\arrma.wc.device.core.csproj" />
+  </ItemGroup>
+
 </Project>

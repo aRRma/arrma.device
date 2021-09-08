@@ -5,25 +5,25 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Device", "Device", "{135870F2-EF89-43C3-ABEA-D1054D7487CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "arrma.wc.device", "Device\arrma.wc.device\arrma.wc.device.csproj", "{9D4181C6-0011-4190-BB91-E9CF31794775}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "arrma.wc.device", "Device\arrma.wc.device\arrma.wc.device.csproj", "{9D4181C6-0011-4190-BB91-E9CF31794775}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "arrma.wc.device.core", "device\arrma.wc.device.core\arrma.wc.device.core.csproj", "{A48606FB-185C-4F83-829B-045B665614D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "arrma.wc.device.core", "device\arrma.wc.device.core\arrma.wc.device.core.csproj", "{A48606FB-185C-4F83-829B-045B665614D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "arrma.wc.device.base", "Device\arrma.wc.device.base\arrma.wc.device.base.csproj", "{B34DB0E9-2FEB-47CA-8D39-C94480A81FF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "arrma.wc.device.base", "Device\arrma.wc.device.base\arrma.wc.device.base.csproj", "{B34DB0E9-2FEB-47CA-8D39-C94480A81FF7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{964D7F11-636A-4396-854C-F295ADB2691D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "arrma.wc.ui.wpf", "UI\arrma.wc.ui.wpf\arrma.wc.ui.wpf.csproj", "{D3BA717D-D5B3-44F1-A315-C18E311916BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "arrma.wc.ui.wpf", "UI\arrma.wc.ui.wpf\arrma.wc.ui.wpf.csproj", "{D3BA717D-D5B3-44F1-A315-C18E311916BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "arrma.wc.ui.console_test", "UI\arrma.wc.ui.console_test\arrma.wc.ui.console_test.csproj", "{82616F81-F769-4310-9883-2BA897F98E19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "arrma.wc.ui.console_test", "UI\arrma.wc.ui.console_test\arrma.wc.ui.console_test.csproj", "{82616F81-F769-4310-9883-2BA897F98E19}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{D0901742-B1EE-42EE-8BB8-AEFB127207DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "arrma.wc.logger", "Data\arrma.wc.logger\arrma.wc.logger.csproj", "{2AFA4712-BBC1-4993-AC11-547F9EBCF4DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "arrma.wc.logger", "Data\arrma.wc.logger\arrma.wc.logger.csproj", "{2AFA4712-BBC1-4993-AC11-547F9EBCF4DD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{68A0535C-DE4F-45C0-A8FC-30727F13D478}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{68A0535C-DE4F-45C0-A8FC-30727F13D478}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "arrma.wc.interfaces", "services\arrma.wc.interfaces\arrma.wc.interfaces.csproj", "{CBE7D14C-60C5-43CF-8D15-236ECA2B28D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "arrma.wc.interfaces", "services\arrma.wc.interfaces\arrma.wc.interfaces.csproj", "{CBE7D14C-60C5-43CF-8D15-236ECA2B28D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +33,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9D4181C6-0011-4190-BB91-E9CF31794775}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -123,6 +120,9 @@ Global
 		{CBE7D14C-60C5-43CF-8D15-236ECA2B28D8}.Release|x86.ActiveCfg = Release|Any CPU
 		{CBE7D14C-60C5-43CF-8D15-236ECA2B28D8}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9D4181C6-0011-4190-BB91-E9CF31794775} = {135870F2-EF89-43C3-ABEA-D1054D7487CD}
 		{A48606FB-185C-4F83-829B-045B665614D1} = {135870F2-EF89-43C3-ABEA-D1054D7487CD}
@@ -131,5 +131,8 @@ Global
 		{82616F81-F769-4310-9883-2BA897F98E19} = {964D7F11-636A-4396-854C-F295ADB2691D}
 		{2AFA4712-BBC1-4993-AC11-547F9EBCF4DD} = {D0901742-B1EE-42EE-8BB8-AEFB127207DB}
 		{CBE7D14C-60C5-43CF-8D15-236ECA2B28D8} = {68A0535C-DE4F-45C0-A8FC-30727F13D478}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {390C9184-6EB3-4EEA-82EF-6CB7321EAE70}
 	EndGlobalSection
 EndGlobal
