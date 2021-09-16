@@ -66,7 +66,7 @@ namespace arrma.wc.ui.console_test.TestSerialPort
             Console.WriteLine($"DATA:\n");
             for (int i = 0; i < totalBytes; i += bytesInPack)
             {
-                Console.WriteLine($"Pack {i/bytesInPack}: {BitConverter.ToString(buff[i..(i + 9)]).Replace("-", " ")}\n");
+                Console.WriteLine($"Pack {i / bytesInPack}: {BitConverter.ToString(buff[i..(i + 9)]).Replace("-", " ")}\n");
             }
             Console.WriteLine("END read bytes");
             Console.ReadKey();
@@ -97,10 +97,12 @@ namespace arrma.wc.ui.console_test.TestSerialPort
                 Console.ReadKey();
             }
         }
-        public async Task ReadStream(int count, CancellationToken cancellationToken)
+        public async Task ReadStreamAsync(int count, CancellationToken cancellationToken = default)
         {
             Console.WriteLine("Start async read");
             byte[] buff = await ReadAsync(count, cancellationToken).ConfigureAwait(false);
+            if (cancellationToken.IsCancellationRequested)
+                return;
             Console.WriteLine($"DATA:\n");
             for (int i = 0; i < count; i += 10)
             {
@@ -111,6 +113,15 @@ namespace arrma.wc.ui.console_test.TestSerialPort
 
         }
 
+        private async Task<byte[]> ReadAsync(int count, CancellationToken cancellationToken)
+        {
+            var buffer = new byte[count];
+            await ReadAsync(buffer, 0, count, cancellationToken).ConfigureAwait(false);
+            if (cancellationToken.IsCancellationRequested)
+                return new byte[0];
+            return buffer;
+        }
+
         private async Task ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
         {
             var bytesToRead = count;
@@ -119,16 +130,11 @@ namespace arrma.wc.ui.console_test.TestSerialPort
             while (bytesToRead > 0)
             {
                 var readBytes = await _serialPort.BaseStream.ReadAsync(temp, 0, bytesToRead, cancellationToken).ConfigureAwait(false);
+                if (cancellationToken.IsCancellationRequested)
+                    return;
                 Array.Copy(temp, 0, buffer, offset + count - bytesToRead, readBytes);
                 bytesToRead -= readBytes;
             }
-        }
-
-        private async Task<byte[]> ReadAsync(int count, CancellationToken cancellationToken)
-        {
-            var buffer = new byte[count];
-            await ReadAsync(buffer, 0, count, cancellationToken).ConfigureAwait(false);
-            return buffer;
         }
     }
 
@@ -142,5 +148,6 @@ namespace arrma.wc.ui.console_test.TestSerialPort
         public StopBits StopBits { get; set; }
         public int ReadTimeout { get; set; }
         public int WriteTimeout { get; set; }
+        public string EndLine { get; set; }
     }
 }

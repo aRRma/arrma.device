@@ -24,14 +24,29 @@ namespace arrma.wc.ui.console_test
 
 
             //serialPort.ReadByEvent();
-            serialPort.ReadStream(50);
-
-            while (true)
+            using CancellationTokenSource cts = new CancellationTokenSource();
+            CancellationToken token = cts.Token;
+            try
             {
-                Console.WriteLine("LOL");
-                Thread.Sleep(1000);
-                //serialPort.ReadBytesToRead(50, 10);
+                await serialPort.ReadStreamAsync(60, token).ConfigureAwait(false);
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw;
+            }
+
+            Console.WriteLine("Abort?");
+            Console.ReadKey();
+            cts.Cancel();
+            Console.WriteLine("ERRRRR");
+
+            //while (true)
+            //{
+            //    Console.WriteLine("LOL");
+            //    Thread.Sleep(1000);
+            //    //serialPort.ReadBytesToRead(50, 10);
+            //}
 
             Console.ReadKey();
         }
