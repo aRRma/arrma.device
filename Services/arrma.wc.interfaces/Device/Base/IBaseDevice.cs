@@ -12,6 +12,14 @@ namespace arrma.wc.interfaces.Device.Base
         /// </summary>
         public string Name { get; set; }
         /// <summary>
+        /// Адрес устройства в сети
+        /// </summary>
+        public byte Address { get; set; }
+        /// <summary>
+        /// Статус инициализации устройства
+        /// </summary>
+        public bool InitDone { get; set; }
+        /// <summary>
         /// Серийный номер
         /// </summary>
         public string SerialNumber { get; set; }

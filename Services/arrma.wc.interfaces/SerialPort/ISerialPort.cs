@@ -5,9 +5,10 @@
     /// </summary>
     public interface ISerialPort
     {
-        public bool IsConnected { get; set; }
-        public string PortName { get; set; }
-        public bool Connect();
+        public string PortName { get; }
+        public bool PortIsOpen { get; }
+        public string[] GetPortNames();
+        public bool Connect(IRequest request, IResponse response);
         public bool Disconnect();
         public bool Reconnect();
     }
