@@ -3,6 +3,7 @@ using System.IO.Ports;
 using System.Threading;
 using System.Threading.Tasks;
 using arrma.wc.ui.console_test.TestSerialPort;
+using arrma.wc.device.utils;
 
 namespace arrma.wc.ui.console_test
 {
