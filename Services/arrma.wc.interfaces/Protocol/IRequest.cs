@@ -1,4 +1,4 @@
-﻿namespace arrma.wc.interfaces.SerialPort
+﻿namespace arrma.wc.interfaces.Protocol
 {
     /// <summary>
     /// Интерфейс пакета запроса

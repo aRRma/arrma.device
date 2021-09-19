@@ -3,6 +3,7 @@
     public enum LogSource
     {
         OTHER,
+        SERIAL_PORT,
         APPLICATION,
         NETWORK,
         DB_LOCAL,
