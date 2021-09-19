@@ -1,9 +1,12 @@
 ﻿using System;
 using System.IO.Ports;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
+using arrma.wc.device.core;
+using arrma.wc.device.core.DevicePort;
 using arrma.wc.ui.console_test.TestSerialPort;
-using arrma.wc.device.utils;
 
 namespace arrma.wc.ui.console_test
 {
@@ -11,43 +14,30 @@ namespace arrma.wc.ui.console_test
     {
         static async Task Main(string[] args)
         {
-            Console.WriteLine("Console test arrma.wc.device.core!!!");
-            SerialPort01 serialPort = new SerialPort01(new PortConfig()
+            Console.WriteLine("Console test arrma.wc.device.core!!!\n\n");
+
+            #region Test_DeviceSerialPort
+            Test_DeviceSerialPort testDeviceSerialPort = new Test_DeviceSerialPort(new SerialPortConfig()
             {
-                Name = "COM5",
-                BaudRate = 9600,
-                DataBits = 8,
-                Parity = Parity.None,
-                StopBits = StopBits.One,
-                ReadTimeout = 100,
-                WriteTimeout = 100
+                Name = "COM5"
             });
+            Console.WriteLine($"Start get ports name\n{string.Join("\n", Test_DeviceSerialPort.GetPortNames())}\n");
 
+            Console.WriteLine($"Start open {testDeviceSerialPort.PortName}");
+            testDeviceSerialPort.Connect();
+            Console.WriteLine($"Port {testDeviceSerialPort.PortName} is connections: {testDeviceSerialPort.IsConnected}\n");
 
-            //serialPort.ReadByEvent();
-            using CancellationTokenSource cts = new CancellationTokenSource();
-            CancellationToken token = cts.Token;
-            try
-            {
-                await serialPort.ReadStreamAsync(60, token).ConfigureAwait(false);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                throw;
-            }
+            Console.WriteLine($"Start closed {testDeviceSerialPort.PortName}");
+            testDeviceSerialPort.Disconnect();
+            Console.WriteLine($"Port {testDeviceSerialPort.PortName} is connections: {testDeviceSerialPort.IsConnected}\n");
 
-            Console.WriteLine("Abort?");
-            Console.ReadKey();
-            cts.Cancel();
-            Console.WriteLine("ERRRRR");
-
-            //while (true)
-            //{
-            //    Console.WriteLine("LOL");
-            //    Thread.Sleep(1000);
-            //    //serialPort.ReadBytesToRead(50, 10);
-            //}
+            Console.WriteLine($"Start reconnect {testDeviceSerialPort.PortName}");
+            testDeviceSerialPort.Connect();
+            Console.WriteLine($"Port {testDeviceSerialPort.PortName} is connections: {testDeviceSerialPort.IsConnected}");
+            await testDeviceSerialPort.Reconnect();
+            Console.WriteLine($"Port {testDeviceSerialPort.PortName} is connections: {testDeviceSerialPort.IsConnected}\n");
+            #endregion 
+            
 
             Console.ReadKey();
         }

@@ -265,7 +265,7 @@ namespace arrma.wc.device.core.DevicePort
             {
                 lock (_port)
                     _port.Close();
-                await Task.Delay(1000);
+                await Task.Delay(100);
                 if (_port.IsOpen == true)
                     throw new Exception($"Com port {_port.PortName} is not closed. Error reconnect");
                 lock (_port)

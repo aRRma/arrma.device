@@ -10,7 +10,6 @@ namespace arrma.wc.ui.console_test.TestSerialPort
     internal class SerialPort01
     {
         private static SerialPort _serialPort;
-
         public SerialPort01()
         {
             _serialPort = new SerialPort();
