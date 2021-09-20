@@ -1,9 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <AssemblyName>arrma.wc.device.util</AssemblyName>
-    <RootNamespace>arrma.wc.device.util</RootNamespace>
-  </PropertyGroup>
-
-</Project>
