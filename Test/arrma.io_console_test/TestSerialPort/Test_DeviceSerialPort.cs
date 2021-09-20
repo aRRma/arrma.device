@@ -7,9 +7,9 @@ using arrma.device.core;
 
 namespace arrma.wc.ui.console_test
 {
-    class Test_DeviceSerialPort : DeviceSerialPort
+    class TestDevicePotocol : DeviceSerialPort
     {
-        public Test_DeviceSerialPort(SerialPortConfig config) : base(config)
+        public TestDevicePotocol(SerialPortConfig config) : base(config)
         {
 
         }

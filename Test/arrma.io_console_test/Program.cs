@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -15,11 +16,15 @@ namespace arrma.wc.ui.console_test
             Console.WriteLine("Console test arrma.wc.device.core!!!\n\n");
 
             #region Test_DeviceSerialPort
-            Test_DeviceSerialPort testDeviceSerialPort = new Test_DeviceSerialPort(new SerialPortConfig()
+            TestDevicePotocol testDeviceSerialPort = new TestDevicePotocol(new SerialPortConfig()
             {
                 Name = "COM5"
             });
-            Console.WriteLine($"Start get ports name\n{string.Join("\n", Test_DeviceSerialPort.GetPortNames())}\n");
+            Console.WriteLine($"Start get ports name\n");
+            foreach (var item in TestDevicePotocol.ComPortsDictionary)
+            {
+                Console.WriteLine($"{item.Key} - {item.Value}");   
+            }
 
             Console.WriteLine($"Start open {testDeviceSerialPort.PortName}");
             testDeviceSerialPort.Connect();

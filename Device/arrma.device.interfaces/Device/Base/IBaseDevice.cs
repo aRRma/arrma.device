@@ -37,6 +37,5 @@
         /// Тип протокола устройства
         /// </summary>
         public ProtocolType Protocol { get; set; }
-
     }
 }

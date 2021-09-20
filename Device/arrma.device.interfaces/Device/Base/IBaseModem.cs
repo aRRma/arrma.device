@@ -1,4 +1,6 @@
-﻿namespace arrma.device.interfaces
+﻿using arrma.device;
+
+namespace arrma.device.interfaces
 {
     /// <summary>
     /// Базовый интерфейс типового модема
@@ -12,7 +14,7 @@
         /// <summary>
         /// Качество сигнала
         /// </summary>
-        public QoS QoSInfo { get; set; }
+        public QosInfo QoSInfo { get; set; }
         /// <summary>
         /// Идент. производителя модема
         /// </summary>
@@ -44,16 +46,16 @@
     }
 
     /// <summary>
-    /// Структура описывающая качество связи
+    /// Структура описывающая качество связи модема в сети
     /// </summary>
-    public struct QoS
+    public struct QosInfo
     {
         /// <summary>
         /// Arbitrary strength unit (количество делений связи)
         /// </summary>
         public byte Asu { get; set; }
         /// <summary>
-        /// Err percent (верхн. граница ошибки)	
+        /// Error percent (верхн. граница ошибки)	
         /// </summary>
         public double Error { get; set; }
     }

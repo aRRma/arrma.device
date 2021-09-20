@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Ports;
@@ -13,9 +14,15 @@ namespace arrma.device.core
         protected readonly SerialPortConfig _config;
         protected readonly ILogger _logger;
 
+        public static Dictionary<string, bool> ComPortsDictionary { get; }
         public bool IsConnected => _port?.IsOpen ?? false;
         public string PortName => _port?.PortName ?? "";
 
+        static DeviceSerialPort()
+        {
+            ComPortsDictionary = new Dictionary<string, bool>();
+            GetPortNames();
+        }
         public DeviceSerialPort()
         {
             _config = new SerialPortConfig();
@@ -29,14 +36,12 @@ namespace arrma.device.core
                 WriteTimeout = _config.WriteTimeout
             };
         }
-
         public DeviceSerialPort(DeviceSerialPort port)
         {
             _port = port?._port ?? new SerialPort();
             _config = port?._config ?? new SerialPortConfig();
             _logger = port?._logger;
         }
-
         public DeviceSerialPort(SerialPortConfig config, ILogger logger = null)
         {
             _config = config;
@@ -53,18 +58,21 @@ namespace arrma.device.core
             _logger = logger;
         }
 
-        public static string[] GetPortNames(ILogger logger = null)
+        public static void GetPortNames(ILogger logger = null)
         {
             try
             {
                 string[] ports = SerialPort.GetPortNames();
                 Array.Sort(ports);
-                return ports;
+                foreach (var item in ports)
+                    if (!ComPortsDictionary.ContainsKey(item))
+                        ComPortsDictionary.Add(item, false);
+                logger?.Information($"Find {ports.Length} com ports: {string.Join("; ", ports)}", LogSource.SERIAL_PORT);
             }
             catch (Exception ex)
             {
-                logger?.Error("Error getting com ports.", LogSource.SERIAL_PORT, ex);
-                return new[] { "" };
+                logger?.Error("Error finding com ports.", LogSource.SERIAL_PORT, ex);
+                return;
             }
         }
 
@@ -120,7 +128,6 @@ namespace arrma.device.core
                 }
             }
         }
-
         public bool Connect(string port)
         {
             if (string.IsNullOrWhiteSpace(_config?.Name) || (bool)!_config?.Name.StartsWith("COM"))
@@ -173,7 +180,6 @@ namespace arrma.device.core
                 }
             }
         }
-
         public bool Connect(SerialPortConfig config)
         {
             if (string.IsNullOrWhiteSpace(_config?.Name) || (bool)!_config?.Name.StartsWith("COM"))
@@ -226,7 +232,6 @@ namespace arrma.device.core
                 }
             }
         }
-
         public bool Disconnect()
         {
             if (_port?.IsOpen == false)
@@ -256,7 +261,6 @@ namespace arrma.device.core
                 }
             }
         }
-
         public async Task<bool> Reconnect()
         {
             try
@@ -276,7 +280,6 @@ namespace arrma.device.core
                 return false;
             }
         }
-
         public void Dispose()
         {
             _port?.Dispose();
