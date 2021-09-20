@@ -5,7 +5,7 @@ namespace arrma.wc.device.util
     public static class CRC
     {
         /// <summary>
-        /// CRC16 Modbus для ПЛК Delta
+        /// CRC16 Modbus
         /// </summary>
         /// <param name="data"></param>
         /// <param name="size"></param>
@@ -24,7 +24,7 @@ namespace arrma.wc.device.util
             return crc;
         }
         /// <summary>
-        /// CRC16 Modbus CCNet для купюроприемника Cashcode
+        /// CRC16 CCNet
         /// </summary>
         /// <param name="data"></param>
         /// <param name="size"></param>
@@ -47,6 +47,19 @@ namespace arrma.wc.device.util
                     else CRC >>= 1;
                 }
             }
+            return CRC;
+        }
+        /// <summary>
+        /// CRC8 Impuls
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        public static byte GetCRC8Impuls(byte[] data, int size)
+        {
+            byte CRC = data[0];
+            for (int i = 1; i < size; i++)
+                CRC ^= data[i];
             return CRC;
         }
     }
