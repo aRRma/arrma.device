@@ -12,4 +12,8 @@
     <None Remove="Devices\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Arrma.Device.Basic\Arrma.Device.Basic.csproj" />
+  </ItemGroup>
+
 </Project>

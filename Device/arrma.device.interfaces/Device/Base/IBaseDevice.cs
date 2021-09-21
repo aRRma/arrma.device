@@ -1,4 +1,4 @@
-﻿using Arrma.Device.Interfaces.Enum;
+﻿using Arrma.Device.Enum;
 
 namespace Arrma.Device.Interfaces.Device.Base
 {

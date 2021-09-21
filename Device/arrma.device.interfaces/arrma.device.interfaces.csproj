@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.IO.Ports" Version="5.0.1" />
+    <ProjectReference Include="..\Arrma.Device.Enum\Arrma.Device.Enum.csproj" />
   </ItemGroup>
 
 </Project>

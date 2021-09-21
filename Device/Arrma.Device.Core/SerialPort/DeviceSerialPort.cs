@@ -1,9 +1,10 @@
 ﻿using System;
+using System.IO.Ports;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Arrma.Device.Interfaces.Logger;
-using Arrma.Device.Interfaces.Enum;
+using Arrma.Device.Enum;
 
 namespace Arrma.Device.Core.SerialPort
 {

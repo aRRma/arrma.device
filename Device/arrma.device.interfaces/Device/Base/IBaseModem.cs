@@ -1,4 +1,4 @@
-﻿using Arrma.Device.Interfaces.Enum;
+﻿using Arrma.Device.Enum;
 
 namespace Arrma.Device.Interfaces.Device.Base
 {
@@ -10,27 +10,11 @@ namespace Arrma.Device.Interfaces.Device.Base
         /// <summary>
         /// Тип регистрации модема в сети
         /// </summary>
-        public NetRegType NetworkRegistration { get; set; }
+        public NetworkRegType NetworkRegistration { get; set; }
         /// <summary>
         /// Качество сигнала
         /// </summary>
         public QosInfo QoSInfo { get; set; }
-        /// <summary>
-        /// Идент. производителя модема
-        /// </summary>
-        public string ManufIdent { get; set; }
-        /// <summary>
-        /// Идент. модели модуля модема
-        /// </summary>
-        public string ModelIdent { get; set; }
-        /// <summary>
-        /// Идент. версии ПО модуля модема
-        /// </summary>
-        public string RevisionSoft { get; set; }
-        /// <summary>
-        /// Серийный номер IMEI модема
-        /// </summary>
-        public string ModemIMEI { get; set; }
         /// <summary>
         /// Серийный номер SIM-карты
         /// </summary>

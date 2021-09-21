@@ -1,4 +1,4 @@
-﻿namespace Arrma.Device.Core.Protocol.At
+﻿namespace Arrma.Device.Enum
 {
     /// <summary>
     /// Перечисление команд AT протокола для модема Teleofis RX108-R2
@@ -330,5 +330,20 @@
         // 3 - registration denied
         // 4 -unknown
         // 5 - registered, roaming
+    }
+
+    /// <summary>
+    /// Перечисление типов операторов сим карт
+    /// </summary>
+    public enum SimOperatorType
+    {
+        NONE,
+        MTS,
+        BEELINE,
+        MEGAFON,
+        YOTA,
+        TELE2,
+        WIFIRE,
+        ROSTELEKOM
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Arrma.Device.Interfaces.Enum
+﻿namespace Arrma.Device.Enum
 {
     /// <summary>
     /// Перечисление типов интерфейса
