@@ -1,7 +1,7 @@
 ﻿using System;
-using arrma.device.interfaces;
+using Arrma.Device.Interfaces.Protocol;
 
-namespace arrma.device.core
+namespace Arrma.Device.Core.Protocol
 {
     /// <summary>
     /// Структура пакета запроса

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace arrma.device.util
+namespace Arrma.Device.Util.AtProtocol
 {
     public static class AtProtocolUtil
     {

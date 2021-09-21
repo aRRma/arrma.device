@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.IO.Ports;
 using System.Threading.Tasks;
-using arrma.device.interfaces;
+using Arrma.Device.Interfaces.Logger;
+using Arrma.Device.Interfaces.Enum;
 
-namespace arrma.device.core
+namespace Arrma.Device.Core.SerialPort
 {
     public class DeviceSerialPort : IDisposable
     {
-        protected readonly SerialPort _port;
+        protected readonly System.IO.Ports.SerialPort _port;
         protected readonly SerialPortConfig _config;
         protected readonly ILogger _logger;
 
@@ -26,7 +25,7 @@ namespace arrma.device.core
         public DeviceSerialPort()
         {
             _config = new SerialPortConfig();
-            _port = new SerialPort()
+            _port = new System.IO.Ports.SerialPort()
             {
                 BaudRate = _config.BaudRate,
                 DataBits = _config.DataBits,
@@ -38,14 +37,14 @@ namespace arrma.device.core
         }
         public DeviceSerialPort(DeviceSerialPort port)
         {
-            _port = port?._port ?? new SerialPort();
+            _port = port?._port ?? new System.IO.Ports.SerialPort();
             _config = port?._config ?? new SerialPortConfig();
             _logger = port?._logger;
         }
         public DeviceSerialPort(SerialPortConfig config, ILogger logger = null)
         {
             _config = config;
-            _port = new SerialPort()
+            _port = new System.IO.Ports.SerialPort()
             {
                 PortName = _config.Name,
                 BaudRate = _config.BaudRate,
@@ -62,7 +61,7 @@ namespace arrma.device.core
         {
             try
             {
-                string[] ports = SerialPort.GetPortNames();
+                string[] ports = System.IO.Ports.SerialPort.GetPortNames();
                 Array.Sort(ports);
                 foreach (var item in ports)
                     if (!ComPortsDictionary.ContainsKey(item))

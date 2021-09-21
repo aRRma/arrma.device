@@ -1,4 +1,4 @@
-﻿namespace arrma.device.interfaces
+﻿namespace Arrma.Device.Interfaces.Protocol
 {
     /// <summary>
     /// Интерфейс пакета ответа

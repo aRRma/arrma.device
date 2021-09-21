@@ -1,4 +1,4 @@
-﻿namespace arrma.device.core
+﻿namespace Arrma.Device.Core.Protocol.At
 {
     /// <summary>
     /// Перечисление команд AT протокола для модема Teleofis RX108-R2

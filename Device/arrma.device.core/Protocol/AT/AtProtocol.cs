@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
-using arrma.device.interfaces;
+using Arrma.Device.Core.SerialPort;
+using Arrma.Device.Interfaces.Logger;
+using Arrma.Device.Interfaces.Protocol;
 
-namespace arrma.device.core
+namespace Arrma.Device.Core.Protocol.At
 {
     class AtProtocol : DeviceSerialPort, IProtocol
     {

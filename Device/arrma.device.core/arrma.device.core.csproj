@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>Arrma.Device.Core</AssemblyName>
+    <RootNamespace>Arrma.Device.Core</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,9 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\arrma.logger\arrma.logger.csproj" />
-    <ProjectReference Include="..\arrma.device.interfaces\arrma.device.interfaces.csproj" />
-    <ProjectReference Include="..\arrma.device.utils\arrma.device.util.csproj" />
+    <ProjectReference Include="..\..\Data\arrma.logger\Arrma.Logger.csproj" />
+    <ProjectReference Include="..\arrma.device.interfaces\Arrma.Device.Interfaces.csproj" />
+    <ProjectReference Include="..\Arrma.Device.Util\Arrma.Device.Util.csproj" />
   </ItemGroup>
 
 </Project>

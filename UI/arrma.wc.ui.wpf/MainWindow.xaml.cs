@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace arrma.wc.ui.wpf
+namespace Arrma.Wc.Ui.Wpf
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

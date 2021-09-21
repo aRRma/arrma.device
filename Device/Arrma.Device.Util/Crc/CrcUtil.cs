@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace arrma.wc.device.util
+namespace Arrma.Device.Util.Crc
 {
     public static class CrcUtil
     {

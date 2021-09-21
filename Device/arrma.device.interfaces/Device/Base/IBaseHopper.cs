@@ -1,4 +1,4 @@
-﻿namespace arrma.device.interfaces
+﻿namespace Arrma.Device.Interfaces.Device.Base
 {
     /// <summary>
     /// Базовый интерфейс типового хоппера

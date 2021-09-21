@@ -2,10 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>Arrma.Device.Util</AssemblyName>
+    <RootNamespace>Arrma.Device.Util</RootNamespace>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="BaseDevices\" />
-  </ItemGroup>
 
 </Project>

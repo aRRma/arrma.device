@@ -1,6 +1,6 @@
-﻿using arrma.device;
+﻿using Arrma.Device.Interfaces.Enum;
 
-namespace arrma.device.interfaces
+namespace Arrma.Device.Interfaces.Device.Base
 {
     /// <summary>
     /// Базовый интерфейс типового модема

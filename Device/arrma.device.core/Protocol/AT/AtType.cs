@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace arrma.device.core
+namespace Arrma.Device.Core.Protocol.At
 {
     /// <summary>
     /// Структура описывающая качество связи модема в сети

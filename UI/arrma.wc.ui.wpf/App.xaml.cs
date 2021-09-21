@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace arrma.wc.ui.wpf
+namespace Arrma.Wc.Ui.Wpf
 {
     /// <summary>
     /// Interaction logic for App.xaml

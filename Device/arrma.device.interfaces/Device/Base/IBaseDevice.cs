@@ -1,4 +1,6 @@
-﻿namespace arrma.device.interfaces
+﻿using Arrma.Device.Interfaces.Enum;
+
+namespace Arrma.Device.Interfaces.Device.Base
 {
     /// <summary>
     /// Базовый интерфейс устройства

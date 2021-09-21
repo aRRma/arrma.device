@@ -1,6 +1,7 @@
 ﻿using System;
+using Arrma.Device.Interfaces.Enum;
 
-namespace arrma.device.interfaces
+namespace Arrma.Device.Interfaces.Logger
 {
     /// <summary>
     /// Интерфейс логгера

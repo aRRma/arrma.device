@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>Arrma.Device.Basic</AssemblyName>
+    <RootNamespace>Arrma.Device.Basic</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="BaseDevices\**" />
+    <EmbeddedResource Remove="BaseDevices\**" />
+    <None Remove="BaseDevices\**" />
+  </ItemGroup>
+
+</Project>

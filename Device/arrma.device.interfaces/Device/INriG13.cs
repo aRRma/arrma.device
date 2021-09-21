@@ -1,4 +1,6 @@
-﻿namespace arrma.device.interfaces
+﻿using Arrma.Device.Interfaces.Device.Base;
+
+namespace Arrma.Device.Interfaces.Device
 {
     /// <summary>
     /// Интерфейс монетоприемника NRI G13

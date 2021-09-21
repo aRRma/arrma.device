@@ -1,6 +1,6 @@
 ﻿using System.IO.Ports;
 
-namespace arrma.device.core
+namespace Arrma.Device.Core.SerialPort
 {
     public class SerialPortConfig
     {
@@ -40,6 +40,6 @@ namespace arrma.device.core
             WriteTimeout = config?.WriteTimeout ?? 100;
         }
 
-        public override string ToString() => $"{(string.IsNullOrWhiteSpace(Name) ? "NONE" : Name )},{BaudRate},{DataBits},{Parity},{StopBits},{ReadTimeout},{WriteTimeout}";
+        public override string ToString() => $"{(string.IsNullOrWhiteSpace(Name) ? "NONE" : Name)},{BaudRate},{DataBits},{Parity},{StopBits},{ReadTimeout},{WriteTimeout}";
     }
 }
