@@ -1,18 +1,20 @@
-﻿namespace Arrma.Device.Interfaces.Protocol
+﻿using System;
+
+namespace Arrma.Device.Interfaces.Protocol
 {
     /// <summary>
     /// Интерфейс пакета запроса
     /// </summary>
-    public interface IRequest
+    public interface IRequest<T>
     {
         /// <summary>
         /// Код команды запроса
         /// </summary>
-        public byte Command { get; set; }
+        public T Command { get; set; }
         /// <summary>
-        /// Массив данных запроса
+        /// Обобщенный массив пакета запроса
         /// </summary>
-        public byte[] Data { get; set; }
+        public T Data { get; set; }
         /// <summary>
         /// Длина запроса
         /// </summary>

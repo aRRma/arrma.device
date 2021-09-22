@@ -14,32 +14,34 @@ namespace Arrma.Device.Basic.Protocol.At
         private Dictionary<AtCommandEnd, string> _commandsEnd;
         private Dictionary<AtModemAnswer, string> _modemAnswer;
 
+        public Dictionary<AtCommand, string> Commands => _commands;
+
         public AtProtocol(SerialPortConfig config, ILogger logger = null) : base(config, logger)
         {
             _commands = new Dictionary<AtCommand, string>()
             {
-                { AtCommand.AT_, "AT\r" },
-                { AtCommand.AT_E0, "ATE0\r" },
-                { AtCommand.AT_S0, "ATS0=0\r" },
-                { AtCommand.AT_CLIP, "AT+CLIP=1\r" },
-                { AtCommand.AT_CMGF, "AT+CMGF=1\r" },
-                { AtCommand.AT_CREG, "AT+CREG?\r" },
-                { AtCommand.AT_CSQ, "AT+CSQ\r" },
-                { AtCommand.AT_GMI, "AT+GMI\r" },
-                { AtCommand.AT_GMM, "AT+GMM\r" },
-                { AtCommand.AT_GMR, "AT+GMR\r" },
-                { AtCommand.AT_CGSN, "AT+CGSN\r" },
-                { AtCommand.AT_CCID, "AT+CCID\r" },
-                { AtCommand.AT_COPS, "AT+COPS?\r" },
-                { AtCommand.AT_CIMI, "AT+CIMI\r" },
+                { AtCommand.AT_, "AT" },
+                { AtCommand.AT_E, "ATE0" },
+                { AtCommand.AT_S, "ATS0=0" },
+                { AtCommand.AT_CLIP, "AT+CLIP=1" },
+                { AtCommand.AT_CMGF, "AT+CMGF=1" },
+                { AtCommand.AT_CREG, "AT+CREG?" },
+                { AtCommand.AT_CSQ, "AT+CSQ" },
+                { AtCommand.AT_GMI, "AT+GMI" },
+                { AtCommand.AT_GMM, "AT+GMM" },
+                { AtCommand.AT_GMR, "AT+GMR" },
+                { AtCommand.AT_CGSN, "AT+CGSN" },
+                { AtCommand.AT_CCID, "AT+CCID" },
+                { AtCommand.AT_COPS, "AT+COPS?" },
+                { AtCommand.AT_CIMI, "AT+CIMI" },
                 { AtCommand.AT_CUSD, "AT+CUSD=1," },
-                { AtCommand.AT_REBOOT, "AT#REBOOT\r" },
-                { AtCommand.AT_CPMS, "AT+CPMS?\r" },
-                { AtCommand.AT_CMGL, "AT+CMGL=\"ALL\"\r" },
-                { AtCommand.AT_CMGR, "AT+CMGR=1\r" },
-                { AtCommand.AT_CMGD, "AT+CMGD=1,4\r" },
+                { AtCommand.AT_REBOOT, "AT#REBOOT" },
+                { AtCommand.AT_CPMS, "AT+CPMS?" },
+                { AtCommand.AT_CMGL, "AT+CMGL=\"ALL\"" },
+                { AtCommand.AT_CMGR, "AT+CMGR=1" },
+                { AtCommand.AT_CMGD, "AT+CMGD=1,4" },
                 { AtCommand.AT_CMGS, "AT+CMGS=" },
-                { AtCommand.AT_H0, "ATH$\r" }
+                { AtCommand.AT_H, "ATH0" }
             };
             _commandsEnd = new Dictionary<AtCommandEnd, string>()
             {

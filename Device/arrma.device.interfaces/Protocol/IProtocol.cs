@@ -1,11 +1,13 @@
-﻿namespace Arrma.Device.Interfaces.Protocol
+﻿using System.Runtime.InteropServices.ComTypes;
+
+namespace Arrma.Device.Interfaces.Protocol
 {
     /// <summary>
     /// Интерфейс протокола
     /// </summary>
-    public interface IProtocol
+    public interface IProtocol<T>
     {
-        public bool SearchPort(IRequest request, out string name);
-        public IResponse SendCommand(IResponse response, int byteAnswer);
+        public bool SearchPort(IRequest<T> request, int byteAnswer);
+        public IResponse<T> SendCommand(IRequest<T> request, int byteAnswer);
     }
 }

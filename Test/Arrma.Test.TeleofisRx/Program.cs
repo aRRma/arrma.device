@@ -4,6 +4,7 @@ using Arrma.Device;
 using Arrma.Device.Basic;
 using Arrma.Device.Core;
 using Arrma.Device.Core.SerialPort;
+using Arrma.Device.Core.Transport;
 using Arrma.Device.Enum;
 
 namespace Arrma.Test.TeleofisRx
@@ -23,6 +24,9 @@ namespace Arrma.Test.TeleofisRx
                 ReadTimeout = 100,
                 WriteTimeout = 100
             });
+            
+            modem.SearchPort(new AtRequest("AT", ""), 6);
+            modem.SendCommand(new AtRequest(modem.Commands[AtCommand.AT_], ""));
         }
     }
 }

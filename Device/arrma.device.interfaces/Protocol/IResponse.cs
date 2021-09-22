@@ -3,19 +3,19 @@
     /// <summary>
     /// Интерфейс пакета ответа
     /// </summary>
-    public interface IResponse
+    public interface IResponse<T>
     {
         /// <summary>
-        /// Пакет ответа
+        /// Обобщенный массив пакет ответа
         /// </summary>
-        public byte[] Data { get; set; }
+        public T Data { get; }
         /// <summary>
         /// Длина пакета
         /// </summary>
-        public int Length { get; set; }
+        public int Length { get; }
         /// <summary>
-        /// Прошел ли пакет проверку CRC
+        /// Прошел ли пакет валидацию (CRC или еще что-то)
         /// </summary>
-        public bool Valid { get; set; }
+        public bool Valid { get; }
     }
 }

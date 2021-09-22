@@ -13,11 +13,11 @@
         /// <summary>
         /// команда отключения эхо  (if parameter is omitted, the command has the same behaviour of ATE0)
         /// </summary>
-        AT_E0,
+        AT_E,
         /// <summary>
         /// команда отключения автоматического ответа на звонок после первого гудка (0 - auto answer disabled (factory default))
         /// </summary>
-        AT_S0,
+        AT_S,
         /// <summary>
         /// команда включения определение номера входящего звонка
         /// </summary>
@@ -103,7 +103,7 @@
         /// <summary>
         /// отклонить звонок
         /// </summary>
-        AT_H0
+        AT_H
     }
 
     public enum AtCommandEnd
