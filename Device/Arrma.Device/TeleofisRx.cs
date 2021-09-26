@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Arrma.Device.Basic.Protocol.At;
 using Arrma.Device.Core.SerialPort;
+using Arrma.Device.Core.Transport;
 using Arrma.Device.Enum;
 using Arrma.Device.Interfaces.Device;
 using Arrma.Device.Interfaces.Logger;
@@ -38,5 +39,9 @@ namespace Arrma.Device
             Protocol = ProtocolType.AT;
         }
 
+        public bool SearchPort()
+        {
+            return base.SearchPort(new AtRequest(Commands[AtCommand.AT_], ""), 6);
+        }
     }
 }

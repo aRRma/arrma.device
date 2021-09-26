@@ -25,7 +25,7 @@ namespace Arrma.Test.TeleofisRx
                 WriteTimeout = 100
             });
             
-            modem.SearchPort(new AtRequest("AT", ""), 6);
+            modem.SearchPort();
             modem.SendCommand(new AtRequest(modem.Commands[AtCommand.AT_], ""));
         }
     }
