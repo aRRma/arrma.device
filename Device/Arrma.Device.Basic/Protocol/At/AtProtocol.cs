@@ -21,27 +21,27 @@ namespace Arrma.Device.Basic.Protocol.At
             _commands = new Dictionary<AtCommand, string>()
             {
                 { AtCommand.AT_, "AT" },
-                { AtCommand.AT_E, "ATE0" },
-                { AtCommand.AT_S, "ATS0=0" },
-                { AtCommand.AT_CLIP, "AT+CLIP=1" },
-                { AtCommand.AT_CMGF, "AT+CMGF=1" },
-                { AtCommand.AT_CREG, "AT+CREG?" },
+                { AtCommand.AT_E, "ATE" },
+                { AtCommand.AT_S0, "ATS0" },
+                { AtCommand.AT_CLIP, "AT+CLIP" },
+                { AtCommand.AT_CMGF, "AT+CMGF" },
+                { AtCommand.AT_CREG, "AT+CREG" },
                 { AtCommand.AT_CSQ, "AT+CSQ" },
                 { AtCommand.AT_GMI, "AT+GMI" },
                 { AtCommand.AT_GMM, "AT+GMM" },
                 { AtCommand.AT_GMR, "AT+GMR" },
                 { AtCommand.AT_CGSN, "AT+CGSN" },
                 { AtCommand.AT_CCID, "AT+CCID" },
-                { AtCommand.AT_COPS, "AT+COPS?" },
+                { AtCommand.AT_COPS, "AT+COPS" },
                 { AtCommand.AT_CIMI, "AT+CIMI" },
-                { AtCommand.AT_CUSD, "AT+CUSD=1," },
+                { AtCommand.AT_CUSD, "AT+CUSD," },
                 { AtCommand.AT_REBOOT, "AT#REBOOT" },
                 { AtCommand.AT_CPMS, "AT+CPMS?" },
                 { AtCommand.AT_CMGL, "AT+CMGL=\"ALL\"" },
-                { AtCommand.AT_CMGR, "AT+CMGR=1" },
-                { AtCommand.AT_CMGD, "AT+CMGD=1,4" },
-                { AtCommand.AT_CMGS, "AT+CMGS=" },
-                { AtCommand.AT_H, "ATH0" }
+                { AtCommand.AT_CMGR, "AT+CMGR" },
+                { AtCommand.AT_CMGD, "AT+CMGD" },
+                { AtCommand.AT_CMGS, "AT+CMGS" },
+                { AtCommand.AT_H, "ATH" }
             };
             _commandsEnd = new Dictionary<AtCommandEnd, string>()
             {

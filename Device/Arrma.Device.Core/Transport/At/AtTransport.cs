@@ -43,7 +43,7 @@ namespace Arrma.Device.Core.Transport.At
             }
             return false;
         }
-
+        
         public IResponse<string> SendCommand(IRequest<string> request, int byteAnswer = 0)
         {
             // формируем команду
@@ -102,7 +102,7 @@ namespace Arrma.Device.Core.Transport.At
                 return new AtResponse(string.Join("", tempResp), true);
             else
                 _logger.Error($"Broken AT modem answer: {string.Join("", tempResp)}", LogSource.SERIAL_PORT);
-            
+
             return new AtResponse("", false);
         }
     }
