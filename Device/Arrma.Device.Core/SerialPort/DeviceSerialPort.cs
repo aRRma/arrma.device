@@ -156,6 +156,7 @@ namespace Arrma.Device.Core.SerialPort
                 try
                 {
                     _port.Open();
+                    _config.Name = _port.PortName;
                     _logger?.Information($"Com port {_port.PortName} is open.", LogSource.SERIAL_PORT);
                     return true;
 
@@ -208,6 +209,7 @@ namespace Arrma.Device.Core.SerialPort
                 try
                 {
                     _port.Open();
+                    _config.Name = config.Name;
                     _logger?.Information($"Com port {_port.PortName} is open.", LogSource.SERIAL_PORT);
                     return true;
 

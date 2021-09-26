@@ -45,7 +45,6 @@ namespace Arrma.Device.Core.Transport.At
             _logger?.Error("At modem com port not found", LogSource.SERIAL_PORT);
             return false;
         }
-
         public IResponse<string> SendCommand(IRequest<string> request, int byteAnswer = 0)
         {
             // формируем команду
@@ -58,7 +57,7 @@ namespace Arrma.Device.Core.Transport.At
             tempReq.Add('\r');
 
             Debug.WriteLine(new string('=', 100));
-            Debug.WriteLine($"At command {request.Command.ToString()}: {string.Join("", request)}");
+            Debug.WriteLine($"At command {request.Command.ToString()}: {string.Join("", request)}\t{DateTime.Now}.{DateTime.Now.Millisecond}");
 
             // если порт не открыт выходим
             if (!_port.IsOpen) return new AtResponse("", false);
@@ -96,7 +95,7 @@ namespace Arrma.Device.Core.Transport.At
                 }
             }
 
-            Debug.WriteLine($"AT modem answer: {string.Join("", tempResp)}");
+            Debug.WriteLine($"AT modem answer: {string.Join("", tempResp).Replace("\r\n", " ")}\t{DateTime.Now}.{DateTime.Now.Millisecond}");
             Debug.WriteLine(new string('=', 100) + "\n");
 
             // проверяем принятую пачку

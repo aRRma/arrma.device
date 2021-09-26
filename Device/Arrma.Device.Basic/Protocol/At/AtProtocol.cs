@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Arrma.Device.Core.SerialPort;
+using Arrma.Device.Core.Transport;
 using Arrma.Device.Core.Transport.At;
 using Arrma.Device.Interfaces.Logger;
 using Arrma.Device.Enum;
@@ -61,29 +62,64 @@ namespace Arrma.Device.Basic.Protocol.At
         }
 
         // методы для базовой настройки модема
+        /// <summary>
+        /// Пинг модема. Команда AT.
+        /// </summary>
+        /// <returns></returns>
         public bool PingModem()
         {
-            return false;
+            return SendCommand(new AtRequest(_commands[AtCommand.AT_], ""), 6).Valid;
         }
+        /// <summary>
+        /// Отключить эхо. Команда ATE0.
+        /// </summary>
+        /// <returns></returns>
         public bool EchoDisable()
         {
-            return false;
+            return SendCommand(new AtRequest(_commands[AtCommand.AT_E], "0"), 6).Valid;
         }
+        /// <summary>
+        /// Отключение автоответа на звонок (после первого гудка). Команда ATS0=0.
+        /// </summary>
+        /// <returns></returns>
         public bool AutoAnswerDisable()
         {
-            return false;
+            return SendCommand(new AtRequest(_commands[AtCommand.AT_S0], "=0"), 6).Valid;
         }
+        /// <summary>
+        /// Включить АОН. Команда AT+CLIP=1.
+        /// </summary>
+        /// <returns></returns>
         public bool AutoNumberDetectionEnable()
         {
-            return false;
+            return SendCommand(new AtRequest(_commands[AtCommand.AT_CLIP], "=1"), 6).Valid;
         }
+        /// <summary>
+        /// Перейти в текстовый режим. Команда AT+CMGF=1.
+        /// </summary>
+        /// <returns></returns>
         public bool SmsTextModeEnable()
         {
-            return false;
+            return SendCommand(new AtRequest(_commands[AtCommand.AT_CMGF], "=1"), 6).Valid;
         }
+        /// <summary>
+        /// Проверить тип регистрации в сети. Команда AT+CREG?
+        /// </summary>
+        /// <returns></returns>
         public NetworkRegType CheckNetworkRegType()
         {
-            return NetworkRegType.UNKNOWN;
+            var response = SendCommand(new AtRequest(_commands[AtCommand.AT_CREG], "?"), 20);
+            if (!response.Valid) return NetworkRegType.UNKNOWN;
+            return response.Data.Substring(response.Data.IndexOf(",") + 1, 1) switch
+            {
+                "0" => NetworkRegType.NOT_REG,
+                "1" => NetworkRegType.REGISTERED,
+                "2" => NetworkRegType.SEARCH,
+                "3" => NetworkRegType.DENIED,
+                "4" => NetworkRegType.UNKNOWN,
+                "5" => NetworkRegType.ROAMING,
+                _ => NetworkRegType.UNKNOWN
+            };
         }
         public QosInfo CheckNetworkQoS()
         {

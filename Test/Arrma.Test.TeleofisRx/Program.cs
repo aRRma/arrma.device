@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO.Ports;
+using System.Threading;
 using Arrma.Device;
 using Arrma.Device.Basic;
 using Arrma.Device.Core;
@@ -24,9 +25,28 @@ namespace Arrma.Test.TeleofisRx
                 ReadTimeout = 100,
                 WriteTimeout = 100
             });
-            
-            modem.SearchPort();
-            modem.SendCommand(new AtRequest(modem.Commands[AtCommand.AT_], ""));
+
+            if (modem.SearchPort())
+                modem.Connect();
+            else
+                Console.WriteLine("Port :(");
+
+            Console.WriteLine($"Modem port: {modem.PortName}");
+            while (modem.IsConnected)
+            {
+                Console.WriteLine($"Ping: {modem.PingModem()}");
+                Thread.Sleep(100);
+                Console.WriteLine($"Echo off: {modem.EchoDisable()}");
+                Thread.Sleep(100);
+                Console.WriteLine($"Auto Answer Disable: {modem.AutoAnswerDisable()}");
+                Thread.Sleep(100);
+                Console.WriteLine($"Auto Number Detection Enable: {modem.AutoNumberDetectionEnable()}");
+                Thread.Sleep(100);
+                Console.WriteLine($"Sms Text Mode Enable: {modem.SmsTextModeEnable()}");
+                Thread.Sleep(100);
+                Console.WriteLine($"Check Network Reg Type: {modem.CheckNetworkRegType()}");
+                Thread.Sleep(100);
+            }
         }
     }
 }
