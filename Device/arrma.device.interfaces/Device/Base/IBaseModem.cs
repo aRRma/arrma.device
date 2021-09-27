@@ -42,5 +42,21 @@ namespace Arrma.Device.Interfaces.Device.Base
         /// Error percent (верхн. граница ошибки)	
         /// </summary>
         public double Error { get; set; }
+
+        public override string ToString() => $"Палочек связи {Asu}, процент ошибок <{Error}";
+    }
+
+    public struct SimOperator
+    {
+        /// <summary>
+        /// Тип оператора из перечисления
+        /// </summary>
+        public SimOperatorType Type { get; set; }
+        /// <summary>
+        /// Страна оператора
+        /// </summary>
+        public string Country { get; set; }
+
+        public override string ToString() => $"Оператор {Type}, страна {Country}";
     }
 }

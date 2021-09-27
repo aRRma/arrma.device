@@ -43,5 +43,10 @@ namespace Arrma.Device
         {
             return base.SearchPort(new AtRequest(Commands[AtCommand.AT_], ""), 6);
         }
+
+        public bool InitModem()
+        {
+            return false;
+        }
     }
 }

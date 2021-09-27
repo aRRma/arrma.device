@@ -12,6 +12,9 @@ namespace Arrma.Device.Core.Transport.At
 {
     public class AtTransport : DeviceSerialPort, IProtocol<string>
     {
+        /// <summary>
+        /// Количество попыток отправки команд устройству
+        /// </summary>
         public int SendingResponseAttempt { get; set; } = 1;
 
         public AtTransport(SerialPortConfig config, ILogger logger = null) : base(config, logger)
@@ -19,6 +22,12 @@ namespace Arrma.Device.Core.Transport.At
             SendingResponseAttempt = 1;
         }
 
+        /// <summary>
+        /// Ищет COM порт к которому подключено устройство
+        /// </summary>
+        /// <param name="request">Пакет команды для запроса</param>
+        /// <param name="byteAnswer">Количество байт полного ответа на команду запроса</param>
+        /// <returns></returns>
         public bool SearchPort(IRequest<string> request, int byteAnswer = 0)
         {
             foreach (var item in AvailableComPorts)
@@ -47,6 +56,12 @@ namespace Arrma.Device.Core.Transport.At
             _logger?.Error("At modem com port not found", LogSource.SERIAL_PORT);
             return false;
         }
+        /// <summary>
+        /// Формирует полностью команду и отправляет ее устройству (если требуется, то читает ответ). Если byteAnswer не задан, то ответ не ожидается.
+        /// </summary>
+        /// <param name="request">Пакет команды</param>
+        /// <param name="byteAnswer">Количество байт полного ответа на команду</param>
+        /// <returns></returns>
         public IResponse<string> SendCommand(IRequest<string> request, int byteAnswer = 0)
         {
             // формируем команду
@@ -103,8 +118,10 @@ namespace Arrma.Device.Core.Transport.At
             // проверяем принятую пачку
             if (string.Join("", tempResp).Contains(AtModemAnswer.OK.ToString()))
                 return new AtResponse(string.Join("", tempResp), true);
-            else
-                _logger?.Error($"Broken AT modem answer: {string.Join("", tempResp)}", LogSource.SERIAL_PORT);
+            if (string.Join("", tempResp).Contains(AtModemAnswer.ERROR.ToString()))
+                return new AtResponse("", false);
+            
+            _logger?.Error($"Broken AT modem answer: {string.Join("", tempResp)}", LogSource.SERIAL_PORT);
 
             return new AtResponse("", false);
         }

@@ -38,18 +38,41 @@ namespace Arrma.Test.TeleofisRx
 
                 if (modem.IsConnected)
                 {
+                    int delay = 50;
                     Console.WriteLine($"Ping: {modem.PingModem()}");
-                    Thread.Sleep(500);
+                    Thread.Sleep(delay);
                     Console.WriteLine($"Echo off: {modem.EchoDisable()}");
-                    Thread.Sleep(500);
+                    Thread.Sleep(delay);
                     Console.WriteLine($"Auto Answer Disable: {modem.AutoAnswerDisable()}");
-                    Thread.Sleep(500);
+                    Thread.Sleep(delay);
                     Console.WriteLine($"Auto Number Detection Enable: {modem.AutoNumberDetectionEnable()}");
-                    Thread.Sleep(500);
+                    Thread.Sleep(delay);
                     Console.WriteLine($"Sms Text Mode Enable: {modem.SmsTextModeEnable()}");
-                    Thread.Sleep(500);
+                    Thread.Sleep(delay);
                     Console.WriteLine($"Check Network Reg Type: {modem.CheckNetworkRegType()}");
-                    Thread.Sleep(500);
+                    Thread.Sleep(delay);
+                    Console.WriteLine($"Check Network QoS: {modem.CheckNetworkQoS()}");
+                    Thread.Sleep(delay);
+                    Console.WriteLine($"GetManufactureId: {modem.GetManufactureId()}");
+                    Thread.Sleep(delay);
+                    Console.WriteLine($"GetModelId: {modem.GetModelId()}");
+                    Thread.Sleep(delay);
+                    Console.WriteLine($"GetSoftVersion: {modem.GetSoftVersion()}");
+                    Thread.Sleep(delay);
+                    Console.WriteLine($"GetModemSerialNumber: {modem.GetModemSerialNumber()}");
+                    Thread.Sleep(delay);
+                    Console.WriteLine($"GetSimSerialNumber: {modem.GetSimSerialNumber()}");
+                    Thread.Sleep(delay);
+                    Console.WriteLine($"GetOperatorInfo: {modem.GetOperatorInfo()}");
+                    Thread.Sleep(delay);
+                    Console.WriteLine($"GetOperatorType: {modem.GetOperatorType()}");
+                    Thread.Sleep(delay);
+
+                    Console.WriteLine($"GetSimBalance: {modem.GetSimBalance(SimOperatorType.BEELINE)}");
+                    Thread.Sleep(delay);
+
+                    Console.WriteLine($"ModemReboot: {modem.ModemReboot()}");
+                    Thread.Sleep(delay);
                 }
             }
 

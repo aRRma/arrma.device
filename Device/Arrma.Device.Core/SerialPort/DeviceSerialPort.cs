@@ -18,8 +18,17 @@ namespace Arrma.Device.Core.SerialPort
 
         private static readonly Timer _tmrGetPorts;
 
+        /// <summary>
+        /// Доступные в системе COM порты. Если порт true, то он уже занят устройством.
+        /// </summary>
         public static Dictionary<string, bool> AvailableComPorts { get; }
+        /// <summary>
+        /// Статус подключения устройства
+        /// </summary>
         public bool IsConnected => _port?.IsOpen ?? false;
+        /// <summary>
+        /// Название COM порта устройства
+        /// </summary>
         public string PortName => _port?.PortName ?? "";
 
         static DeviceSerialPort()
@@ -63,8 +72,13 @@ namespace Arrma.Device.Core.SerialPort
             _logger = logger;
         }
 
+        /// <summary>
+        /// Статический метод для заполнения словаря доступных в системе COM портов, а так-же установки флага свободен ли порт или нет.
+        /// </summary>
+        /// <param name="logger"></param>
         public static void GetPortNames(ILogger logger = null)
         {
+            //TODO тут конкурентный доступ!!!
             try
             {
                 string[] ports = System.IO.Ports.SerialPort.GetPortNames();
@@ -78,18 +92,29 @@ namespace Arrma.Device.Core.SerialPort
                     if (!ports.Contains(item.Key))
                         AvailableComPorts.Remove(item.Key);
                 logger?.Information($"Find {ports.Length} com ports: {string.Join("; ", ports)}", LogSource.SERIAL_PORT);
+
+                Debug.WriteLine(new string('=', 100) + "\n");
                 Debug.WriteLine($"Find {ports.Length} com ports: {string.Join("; ", ports)}");
+                Debug.WriteLine(new string('=', 100) + "\n");
             }
             catch (Exception ex)
             {
                 logger?.Error("Error finding com ports.", LogSource.SERIAL_PORT, ex);
+
+                Debug.WriteLine(new string('=', 100) + "\n");
                 Debug.WriteLine("Error finding com ports.");
+                Debug.WriteLine(new string('=', 100) + "\n");
+
                 return;
             }
         }
 
         private static void GetPortsCallback(object? state) => GetPortNames();
 
+        /// <summary>
+        /// Подключится к устройству. Настройки COM порта берутся из конфига объекта.
+        /// </summary>
+        /// <returns></returns>
         public bool Connect()
         {
             if (string.IsNullOrWhiteSpace(_config?.Name) || (bool)!_config?.Name.StartsWith("COM"))
@@ -142,6 +167,11 @@ namespace Arrma.Device.Core.SerialPort
                 }
             }
         }
+        /// <summary>
+        /// Подключится к устройству на конкретном COM порту. Настройки COM порта берутся из конфига объекта. Название порта обновляется в конфиге объекта если удачно подключились.
+        /// </summary>
+        /// <param name="port"></param>
+        /// <returns></returns>
         public bool Connect(string port)
         {
             if (string.IsNullOrWhiteSpace(_config?.Name) || (bool)!_config?.Name.StartsWith("COM"))
@@ -170,6 +200,7 @@ namespace Arrma.Device.Core.SerialPort
                 try
                 {
                     _port.Open();
+                    // upd config
                     _config.Name = _port.PortName;
                     _logger?.Information($"Com port {_port.PortName} is open.", LogSource.SERIAL_PORT);
                     return true;
@@ -195,6 +226,11 @@ namespace Arrma.Device.Core.SerialPort
                 }
             }
         }
+        /// <summary>
+        /// Подключится к устройству используя конфиг. Конфиг объекта обновляется если удачно подключились.
+        /// </summary>
+        /// <param name="config"></param>
+        /// <returns></returns>
         public bool Connect(SerialPortConfig config)
         {
             if (string.IsNullOrWhiteSpace(_config?.Name) || (bool)!_config?.Name.StartsWith("COM"))
@@ -223,7 +259,14 @@ namespace Arrma.Device.Core.SerialPort
                 try
                 {
                     _port.Open();
+                    // upd config
                     _config.Name = config.Name;
+                    _config.BaudRate = config.BaudRate;
+                    _config.DataBits = config.DataBits;
+                    _config.Parity = config.Parity;
+                    _config.StopBits = config.StopBits;
+                    _config.ReadTimeout = config.ReadTimeout;
+                    _config.WriteTimeout = config.WriteTimeout;
                     _logger?.Information($"Com port {_port.PortName} is open.", LogSource.SERIAL_PORT);
                     return true;
 
@@ -248,6 +291,10 @@ namespace Arrma.Device.Core.SerialPort
                 }
             }
         }
+        /// <summary>
+        /// Отключиться от устройства. Имя порта сбрасывается на "" пустое.
+        /// </summary>
+        /// <returns></returns>
         public bool Disconnect()
         {
             if (_port?.IsOpen == false)
@@ -278,6 +325,10 @@ namespace Arrma.Device.Core.SerialPort
                 }
             }
         }
+        /// <summary>
+        /// Переподключиться к устройству с текущим конфигом.
+        /// </summary>
+        /// <returns></returns>
         public async Task<bool> Reconnect()
         {
             try
