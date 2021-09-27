@@ -2,6 +2,8 @@
 using System.IO.Ports;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Arrma.Device.Interfaces.Logger;
 using Arrma.Device.Enum;
@@ -14,15 +16,18 @@ namespace Arrma.Device.Core.SerialPort
         protected readonly SerialPortConfig _config;
         protected readonly ILogger _logger;
 
-        public static Dictionary<string, bool> ComPortsDictionary { get; }
+        private static readonly Timer _tmrGetPorts;
+
+        public static Dictionary<string, bool> AvailableComPorts { get; }
         public bool IsConnected => _port?.IsOpen ?? false;
         public string PortName => _port?.PortName ?? "";
 
         static DeviceSerialPort()
         {
-            ComPortsDictionary = new Dictionary<string, bool>();
-            GetPortNames();
+            AvailableComPorts = new Dictionary<string, bool>();
+            _tmrGetPorts = new Timer(GetPortsCallback, null, 0, 5000);
         }
+
         public DeviceSerialPort()
         {
             _config = new SerialPortConfig();
@@ -64,17 +69,26 @@ namespace Arrma.Device.Core.SerialPort
             {
                 string[] ports = System.IO.Ports.SerialPort.GetPortNames();
                 Array.Sort(ports);
+                // заполняем словарь новыми портами
                 foreach (var item in ports)
-                    if (!ComPortsDictionary.ContainsKey(item))
-                        ComPortsDictionary.Add(item, false);
+                    if (!AvailableComPorts.ContainsKey(item))
+                        AvailableComPorts.Add(item, false);
+                // удаляем из словаря пропавшие порты
+                foreach (var item in AvailableComPorts)
+                    if (!ports.Contains(item.Key))
+                        AvailableComPorts.Remove(item.Key);
                 logger?.Information($"Find {ports.Length} com ports: {string.Join("; ", ports)}", LogSource.SERIAL_PORT);
+                Debug.WriteLine($"Find {ports.Length} com ports: {string.Join("; ", ports)}");
             }
             catch (Exception ex)
             {
                 logger?.Error("Error finding com ports.", LogSource.SERIAL_PORT, ex);
+                Debug.WriteLine("Error finding com ports.");
                 return;
             }
         }
+
+        private static void GetPortsCallback(object? state) => GetPortNames();
 
         public bool Connect()
         {
@@ -249,6 +263,7 @@ namespace Arrma.Device.Core.SerialPort
                 try
                 {
                     _port.Close();
+                    _port.PortName = "";
                     _logger?.Information($"Com port {_port.PortName} is closed.", LogSource.SERIAL_PORT);
                     return true;
                 }

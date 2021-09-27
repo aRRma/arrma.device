@@ -21,14 +21,14 @@ namespace Arrma.Device.Core.Transport.At
 
         public bool SearchPort(IRequest<string> request, int byteAnswer = 0)
         {
-            foreach (var item in ComPortsDictionary)
+            foreach (var item in AvailableComPorts)
             {
                 try
                 {
                     if (!Connect(item.Key)) continue;
                     if (SendCommand(request, byteAnswer).Valid)
                     {
-                        ComPortsDictionary[PortName] = true;
+                        AvailableComPorts[PortName] = true;
                         return true;
                     }
                 }
@@ -39,7 +39,9 @@ namespace Arrma.Device.Core.Transport.At
                 }
                 finally
                 {
-                    Disconnect();
+                    var lastPort = PortName;
+                    if (Disconnect())
+                        AvailableComPorts[lastPort] = false;
                 }
             }
             _logger?.Error("At modem com port not found", LogSource.SERIAL_PORT);
