@@ -25,7 +25,7 @@ namespace Arrma.Test.TeleofisRx
                 ReadTimeout = 100,
                 WriteTimeout = 100
             });
-
+            
             // проверка поиска, подключения и настройки модема
             while (!modem.IsConnected)
             {
@@ -67,22 +67,19 @@ namespace Arrma.Test.TeleofisRx
                     Thread.Sleep(delay);
                     Console.WriteLine($"GetOperatorType: {modem.GetOperatorType()}");
                     Thread.Sleep(delay);
-
-                    Console.WriteLine($"GetSimBalance: {modem.GetSimBalance(SimOperatorType.BEELINE)}");
+                    Console.WriteLine($"GetSimBalance: {modem.GetSimBalance(SimOperatorType.BEELINE)} руб.");
                     Thread.Sleep(delay);
-
-                    Console.WriteLine($"ModemReboot: {modem.ModemReboot()}");
-                    Thread.Sleep(delay);
+                    //Console.WriteLine($"ModemReboot: {modem.ModemReboot()}");
+                    //Thread.Sleep(delay);
+                    Console.WriteLine($"Send sms: {modem.SendSmsOnNumber(("+79161884955", $"[{DateTime.Now}] TEST"))}");
                 }
             }
 
-
-            // проверка автообновления списка доступных портов в системе
             while (true)
             {
-                foreach (var item in DeviceSerialPort.AvailableComPorts)
+                foreach (var item in DeviceSerialPort.GetSortComPorts())
                 {
-                    Console.WriteLine($"Port {item.Key}; Status: {item.Value}");
+                    Console.WriteLine($"Port [{item}];");
                 }
                 Console.WriteLine($"\n");
                 Thread.Sleep(5000);
