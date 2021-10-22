@@ -5,13 +5,11 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Device", "Device", "{135870F2-EF89-43C3-ABEA-D1054D7487CD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{964D7F11-636A-4396-854C-F295ADB2691D}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{D0901742-B1EE-42EE-8BB8-AEFB127207DB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arrma.Logger", "Data\Arrma.Logger\Arrma.Logger.csproj", "{2AFA4712-BBC1-4993-AC11-547F9EBCF4DD}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{68A0535C-DE4F-45C0-A8FC-30727F13D478}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arrma.Logger", "Data\Arrma.Logger\Arrma.Logger.csproj", "{2AFA4712-BBC1-4993-AC11-547F9EBCF4DD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arrma.Device.Interfaces", "Device\Arrma.Device.Interfaces\Arrma.Device.Interfaces.csproj", "{CBE7D14C-60C5-43CF-8D15-236ECA2B28D8}"
 EndProject
