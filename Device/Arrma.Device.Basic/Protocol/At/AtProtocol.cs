@@ -14,7 +14,6 @@ namespace Arrma.Device.Basic.Protocol.At
     {
         private Dictionary<AtCommand, string> _commands;
         private Dictionary<AtCommandEnd, string> _commandsEnd;
-        private Dictionary<AtModemAnswer, string> _modemAnswer;
 
         public Dictionary<AtCommand, string> Commands => _commands;
 
@@ -43,6 +42,7 @@ namespace Arrma.Device.Basic.Protocol.At
                 { AtCommand.AT_CMGR, "AT+CMGR" },
                 { AtCommand.AT_CMGD, "AT+CMGD" },
                 { AtCommand.AT_CMGS, "AT+CMGS" },
+                { AtCommand.ENTER_SMS_TEXT, "ENTER_SMS" },
                 { AtCommand.AT_H, "ATH" }
             };
             _commandsEnd = new Dictionary<AtCommandEnd, string>()
@@ -53,13 +53,6 @@ namespace Arrma.Device.Basic.Protocol.At
                 { AtCommandEnd.LF, "\n" },
                 { AtCommandEnd.CRLF, "\r\n"},
             };
-            _modemAnswer = new Dictionary<AtModemAnswer, string>()
-            {
-                { AtModemAnswer.NONE, "" },
-                { AtModemAnswer.OK, "\r\nOK\r\n" },
-                { AtModemAnswer.ERROR, "\r\nERROR\r\n" },
-                { AtModemAnswer.ENTER_SMS, "\r\n>" },
-            };
         }
 
         // методы для базовой настройки модема
@@ -69,7 +62,7 @@ namespace Arrma.Device.Basic.Protocol.At
         /// <returns></returns>
         public bool PingModem()
         {
-            return SendCommand(new AtRequest(_commands[AtCommand.AT_], ""), 6).Valid;
+            return SendCommand(new AtRequest(_commands[AtCommand.AT_], ""), AtTransport.ShortTimeout).Valid;
         }
         /// <summary>
         /// Отключить эхо. Команда ATE0.
@@ -77,7 +70,7 @@ namespace Arrma.Device.Basic.Protocol.At
         /// <returns></returns>
         public bool EchoDisable()
         {
-            return SendCommand(new AtRequest(_commands[AtCommand.AT_E], "0"), 6).Valid;
+            return SendCommand(new AtRequest(_commands[AtCommand.AT_E], "0"), AtTransport.ShortTimeout).Valid;
         }
         /// <summary>
         /// Отключение автоответа на звонок (после первого гудка). Команда ATS0=0.
@@ -85,7 +78,7 @@ namespace Arrma.Device.Basic.Protocol.At
         /// <returns></returns>
         public bool AutoAnswerDisable()
         {
-            return SendCommand(new AtRequest(_commands[AtCommand.AT_S0], "=0"), 6).Valid;
+            return SendCommand(new AtRequest(_commands[AtCommand.AT_S0], "=0"), AtTransport.ShortTimeout).Valid;
         }
         /// <summary>
         /// Включить АОН. Команда AT+CLIP=1.
@@ -93,7 +86,7 @@ namespace Arrma.Device.Basic.Protocol.At
         /// <returns></returns>
         public bool AutoNumberDetectionEnable()
         {
-            return SendCommand(new AtRequest(_commands[AtCommand.AT_CLIP], "=1"), 6).Valid;
+            return SendCommand(new AtRequest(_commands[AtCommand.AT_CLIP], "=1"), AtTransport.ShortTimeout).Valid;
         }
         /// <summary>
         /// Перейти в текстовый режим. Команда AT+CMGF=1.
@@ -101,7 +94,7 @@ namespace Arrma.Device.Basic.Protocol.At
         /// <returns></returns>
         public bool SmsTextModeEnable()
         {
-            return SendCommand(new AtRequest(_commands[AtCommand.AT_CMGF], "=1"), 6).Valid;
+            return SendCommand(new AtRequest(_commands[AtCommand.AT_CMGF], "=1"), AtTransport.ShortTimeout).Valid;
         }
         /// <summary>
         /// Проверить тип регистрации в сети. Команда AT+CREG?
@@ -109,7 +102,7 @@ namespace Arrma.Device.Basic.Protocol.At
         /// <returns></returns>
         public NetworkRegType CheckNetworkRegType()
         {
-            var response = SendCommand(new AtRequest(_commands[AtCommand.AT_CREG], "?"), 20);
+            var response = SendCommand(new AtRequest(_commands[AtCommand.AT_CREG], "?"), AtTransport.ShortTimeout, 20);
             if (!response.Valid) return NetworkRegType.UNKNOWN;
             return response.Data.Substring(response.Data.IndexOf(",") + 1, 1) switch
             {
@@ -128,7 +121,7 @@ namespace Arrma.Device.Basic.Protocol.At
         /// <returns></returns>
         public QosInfo CheckNetworkQoS()
         {
-            var response = SendCommand(new AtRequest(_commands[AtCommand.AT_CSQ], ""), 21);
+            var response = SendCommand(new AtRequest(_commands[AtCommand.AT_CSQ], ""), AtTransport.ShortTimeout, 21);
             if (!response.Valid) return new QosInfo();
 
             int rssi = int.Parse(response.Data[response.Data.IndexOf(' ')..response.Data.IndexOf(',')]);
@@ -164,43 +157,52 @@ namespace Arrma.Device.Basic.Protocol.At
         // системная информация
         public string GetManufactureId()
         {
-            var response = SendCommand(new AtRequest(_commands[AtCommand.AT_GMI], ""), 50);
-            if (!response.Valid) return "";
-            return response.Data.Replace("\r\n", "").Replace("OK", "");
+            try
+            {
+                var response = SendCommand(new AtRequest(_commands[AtCommand.AT_GMI], ""), AtTransport.ShortTimeout, 50);
+                if (!response.Valid) return "";
+                return response.Data.Replace("\r\n", "").Replace("OK", "");
+            }
+            catch (Exception e)
+            {
+                _logger?.Error("Error at method \"GetManufactureId\"", this.ToString());
+                throw;
+            }
+
         }
         public string GetModelId()
         {
-            var response = SendCommand(new AtRequest(_commands[AtCommand.AT_GMM], ""), 50);
+            var response = SendCommand(new AtRequest(_commands[AtCommand.AT_GMM], ""), AtTransport.ShortTimeout, 50);
             if (!response.Valid) return "";
             return response.Data.Replace("\r\n", "").Replace("OK", "");
         }
         public string GetSoftVersion()
         {
-            var response = SendCommand(new AtRequest(_commands[AtCommand.AT_GMR], ""), 50);
+            var response = SendCommand(new AtRequest(_commands[AtCommand.AT_GMR], ""), AtTransport.ShortTimeout, 50);
             if (!response.Valid) return "";
             return response.Data.Replace("\r\n", "").Replace("OK", "");
         }
         public string GetModemSerialNumber()
         {
-            var response = SendCommand(new AtRequest(_commands[AtCommand.AT_CGSN], ""), 50);
+            var response = SendCommand(new AtRequest(_commands[AtCommand.AT_CGSN], ""), AtTransport.ShortTimeout, 50);
             if (!response.Valid) return "";
             return response.Data.Replace("\r\n", "").Replace("OK", "");
         }
         public string GetSimSerialNumber()
         {
-            var response = SendCommand(new AtRequest(_commands[AtCommand.AT_CCID], ""), 50);
+            var response = SendCommand(new AtRequest(_commands[AtCommand.AT_CCID], ""), AtTransport.ShortTimeout, 50);
             if (!response.Valid) return "";
             return response.Data.Replace("\r\n", "").Replace("OK", "").Replace("+CCID: ", "");
         }
         public string GetOperatorInfo()
         {
-            var response = SendCommand(new AtRequest(_commands[AtCommand.AT_COPS], "?"), 50);
+            var response = SendCommand(new AtRequest(_commands[AtCommand.AT_COPS], "?"), AtTransport.ShortTimeout, 50);
             if (!response.Valid) return "";
             return response.Data[(response.Data.IndexOf('"') + 1)..response.Data.LastIndexOf('"')];
         }
         public SimOperator GetOperatorType()
         {
-            var response = SendCommand(new AtRequest(_commands[AtCommand.AT_CIMI], ""), 50);
+            var response = SendCommand(new AtRequest(_commands[AtCommand.AT_CIMI], ""), AtTransport.ShortTimeout, 50);
             if (!response.Valid) return new SimOperator();
 
             // Mobile Country Code — мобильный код страны
@@ -458,7 +460,7 @@ namespace Arrma.Device.Basic.Protocol.At
                 3 or 39 => SimOperatorType.ROSTELEKOM,
                 _ => SimOperatorType.NONE
             };
-            
+
             return sim;
         }
 
@@ -471,16 +473,40 @@ namespace Arrma.Device.Basic.Protocol.At
                 SimOperatorType.BEELINE => "=1,\"#102#\"",
                 _ => ""
             };
-            //TODO ответ идет после OK надо проверять по другому
-            var response = SendCommand(new AtRequest(_commands[AtCommand.AT_CUSD], data), 50);
+
+            var response = SendCommand(new AtRequest(_commands[AtCommand.AT_CUSD], data), AtTransport.LongTimeout, 50);
             if (!response.Valid) return "";
-            return response.Data.Replace("\r\n", "").Replace("OK", "");
+            string balance = string.Empty;
+            var temp = response.Data.Replace("\r\n", "").Replace("OK", "").Split("\"",
+                StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            foreach (var item in temp)
+            {
+                if (item.Contains("balance", StringComparison.OrdinalIgnoreCase)
+                    || item.Contains("balans", StringComparison.OrdinalIgnoreCase)
+                    || item.Contains("баланс", StringComparison.OrdinalIgnoreCase))
+                {
+                    balance = item.Contains("Balans", StringComparison.OrdinalIgnoreCase) ? item.Replace("Balans", "")
+                        : item.Contains("Balance", StringComparison.OrdinalIgnoreCase) ? item.Replace("Balance", "")
+                        : item.Contains("Баланс", StringComparison.OrdinalIgnoreCase) ? item.Replace("Баланс", "")
+                        : item;
+                    balance = balance.Replace(":", "");
+                    balance = balance.Contains("rub", StringComparison.OrdinalIgnoreCase) ? balance.Replace("rub", "")
+                        : balance.Contains("руб", StringComparison.OrdinalIgnoreCase) ? balance.Replace("руб", "")
+                        : balance;
+                    balance = balance.Contains("r", StringComparison.OrdinalIgnoreCase) ? balance.Replace("r", "")
+                        : balance.Contains("р", StringComparison.OrdinalIgnoreCase) ? balance.Replace("р", "")
+                        : balance;
+                    if (balance.EndsWith('.'))
+                        balance = balance.Remove(balance.Length - 1);
+                }
+            }
+            return balance.Replace(" ", "");
         }
 
         // перезагрузка
         public bool ModemReboot()
         {
-            return SendCommand(new AtRequest(_commands[AtCommand.AT_REBOOT], ""), 6).Valid;
+            return SendCommand(new AtRequest(_commands[AtCommand.AT_REBOOT], ""), AtTransport.ShortTimeout, 0).Valid;
         }
 
         // cмс
@@ -500,9 +526,17 @@ namespace Arrma.Device.Basic.Protocol.At
         {
             return "";
         }
-        public string SendSmsOnNumber()
+        public bool SendSmsOnNumber((string number, string text) sms)
         {
-            return "";
+            var response = SendCommand(new AtRequest(_commands[AtCommand.AT_CMGS], "=" + sms.number), AtTransport.LongTimeout);
+
+            if (!response.Data.Contains(">"))
+                return false;
+
+            if (SendCommand(new AtRequest(_commands[AtCommand.ENTER_SMS_TEXT], sms.text + _commandsEnd[AtCommandEnd.SUB]), AtTransport.LongTimeout).Valid)
+                return true;
+
+            return false;
         }
 
         // звонки
@@ -510,16 +544,5 @@ namespace Arrma.Device.Basic.Protocol.At
         {
             return "";
         }
-    }
-
-    /// <summary>
-    /// Таймауты задержек at протокола
-    /// </summary>
-    public static class AtResponseDelays
-    {
-        public static readonly TimeSpan Short = TimeSpan.FromMilliseconds(500);
-        public static readonly TimeSpan Default = TimeSpan.FromSeconds(2);
-        public static readonly TimeSpan WaitCall = TimeSpan.FromSeconds(5);
-        public static readonly TimeSpan Long = TimeSpan.FromSeconds(10);
     }
 }
