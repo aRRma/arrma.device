@@ -6,4 +6,9 @@
     <RootNamespace>Arrma.Device.Util</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Arrma.Device.Enum\Arrma.Device.Enum.csproj" />
+    <ProjectReference Include="..\Arrma.Device.Interfaces\Arrma.Device.Interfaces.csproj" />
+  </ItemGroup>
+
 </Project>
