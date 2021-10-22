@@ -1,4 +1,4 @@
-# arrma.wc.device.core
+# arrma.device.core
 
 Ядро работы с устройствами:
 
@@ -8,7 +8,7 @@
 
 
 
-# arrma.wc.device.base
+# arrma.device.base
 
 Базовые реализации типовых устройств:
 
@@ -25,7 +25,7 @@
 
 
 
-# arrma.wc.device
+# arrma.device
 
 Реализации конкретных устройств:
 
