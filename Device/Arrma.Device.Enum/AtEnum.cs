@@ -95,9 +95,13 @@
         /// </summary>
         AT_CMGD,
         /// <summary>
-        /// команда отправить смс на номер
+        /// команда запроса на отправку смс на номер
         /// </summary>
         AT_CMGS,
+        /// <summary>
+        /// команда ввода смс после приглашения модема
+        /// </summary>
+        ENTER_SMS_TEXT,
 
         //звонки
         /// <summary>
@@ -133,28 +137,7 @@
         /// </summary>
         CRLF
     }
-
-    public enum AtModemAnswer
-    {
-        /// <summary>
-        /// Не известно
-        /// </summary>
-        NONE,
-        /// <summary>
-        /// Ок
-        /// </summary>
-        OK,
-        /// <summary>
-        /// Ошибка
-        /// </summary>
-        ERROR,
-        /// <summary>
-        /// Ввод смс
-        /// </summary>
-        ENTER_SMS
-    }
-
-
+    
     /// <summary>
     /// Перечисление состояний модема
     /// </summary>

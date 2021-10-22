@@ -1,5 +1,5 @@
 ﻿using System;
-using System.IO.Ports;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -16,12 +16,6 @@ namespace Arrma.Device.Core.SerialPort
         protected readonly SerialPortConfig _config;
         protected readonly ILogger _logger;
 
-        private static readonly Timer _tmrGetPorts;
-
-        /// <summary>
-        /// Доступные в системе COM порты. Если порт true, то он уже занят устройством.
-        /// </summary>
-        public static Dictionary<string, bool> AvailableComPorts { get; }
         /// <summary>
         /// Статус подключения устройства
         /// </summary>
@@ -30,12 +24,6 @@ namespace Arrma.Device.Core.SerialPort
         /// Название COM порта устройства
         /// </summary>
         public string PortName => _port?.PortName ?? "";
-
-        static DeviceSerialPort()
-        {
-            AvailableComPorts = new Dictionary<string, bool>();
-            _tmrGetPorts = new Timer(GetPortsCallback, null, 0, 5000);
-        }
 
         public DeviceSerialPort()
         {
@@ -73,44 +61,20 @@ namespace Arrma.Device.Core.SerialPort
         }
 
         /// <summary>
-        /// Статический метод для заполнения словаря доступных в системе COM портов, а так-же установки флага свободен ли порт или нет.
+        /// Возвращает отсортированный список доступных COM портов в системе
         /// </summary>
-        /// <param name="logger"></param>
-        public static void GetPortNames(ILogger logger = null)
+        /// <returns>Массив имен COM портов</returns>
+        public static string[] GetSortComPorts()
         {
-            //TODO тут конкурентный доступ!!!
-            try
-            {
-                string[] ports = System.IO.Ports.SerialPort.GetPortNames();
-                Array.Sort(ports);
-                // заполняем словарь новыми портами
-                foreach (var item in ports)
-                    if (!AvailableComPorts.ContainsKey(item))
-                        AvailableComPorts.Add(item, false);
-                // удаляем из словаря пропавшие порты
-                foreach (var item in AvailableComPorts)
-                    if (!ports.Contains(item.Key))
-                        AvailableComPorts.Remove(item.Key);
-                logger?.Information($"Find {ports.Length} com ports: {string.Join("; ", ports)}", LogSource.SERIAL_PORT);
-
-                Debug.WriteLine(new string('=', 100) + "\n");
-                Debug.WriteLine($"Find {ports.Length} com ports: {string.Join("; ", ports)}");
-                Debug.WriteLine(new string('=', 100) + "\n");
-            }
-            catch (Exception ex)
-            {
-                logger?.Error("Error finding com ports.", LogSource.SERIAL_PORT, ex);
-
-                Debug.WriteLine(new string('=', 100) + "\n");
-                Debug.WriteLine("Error finding com ports.");
-                Debug.WriteLine(new string('=', 100) + "\n");
-
-                return;
-            }
+            List<int> list = new List<int>();
+            foreach (var item in System.IO.Ports.SerialPort.GetPortNames())
+                list.Add(Convert.ToInt32(item.Replace("COM", "")));
+            list.Sort();
+            List<string> ports = new List<string>();
+            foreach (var item in list)
+                ports.Add("COM" + item);
+            return ports.ToArray();
         }
-
-        private static void GetPortsCallback(object? state) => GetPortNames();
-
         /// <summary>
         /// Подключится к устройству. Настройки COM порта берутся из конфига объекта.
         /// </summary>
@@ -119,12 +83,12 @@ namespace Arrma.Device.Core.SerialPort
         {
             if (string.IsNullOrWhiteSpace(_config?.Name) || (bool)!_config?.Name.StartsWith("COM"))
             {
-                _logger?.Error($"Incorrect or empty com_port name: {_config?.Name}", LogSource.SERIAL_PORT);
+                _logger?.Error($"Incorrect or empty com_port name: {_config?.Name}", this.ToString());
                 return false;
             }
             if (_port?.IsOpen == true)
             {
-                _logger?.Error($"Try connect to busy com_port: {_config?.Name}", LogSource.SERIAL_PORT);
+                _logger?.Error($"Try connect to busy com_port: {_config?.Name}", this.ToString());
                 return false;
             }
 
@@ -143,26 +107,26 @@ namespace Arrma.Device.Core.SerialPort
                 try
                 {
                     _port.Open();
-                    _logger?.Information($"Com port {_port.PortName} is open.", LogSource.SERIAL_PORT);
+                    _logger?.Information($"Com port {_port.PortName} is open.", this.ToString());
                     return true;
 
                 }
                 catch (UnauthorizedAccessException e)
                 {
                     // Порт занят
-                    _logger?.Error($"Com port {_port.PortName} is busy.", LogSource.SERIAL_PORT, e);
+                    _logger?.Error($"Com port {_port.PortName} is busy.", this.ToString(), e);
                     return false;
                 }
                 catch (ArgumentException e)
                 {
                     // Неверная конфигурация порта
-                    _logger?.Error($"Invalid com port {_port.PortName} configuration.", LogSource.SERIAL_PORT, e);
+                    _logger?.Error($"Invalid com port {_port.PortName} configuration.", this.ToString(), e);
                     return false;
                 }
                 catch (Exception e)
                 {
                     // Ошибка ввода-вывода
-                    _logger?.Error($"Error opening com port {_port.PortName}.", LogSource.SERIAL_PORT, e);
+                    _logger?.Error($"Error opening com port {_port.PortName}.", this.ToString(), e);
                     return false;
                 }
             }
@@ -176,12 +140,12 @@ namespace Arrma.Device.Core.SerialPort
         {
             if (string.IsNullOrWhiteSpace(_config?.Name) || (bool)!_config?.Name.StartsWith("COM"))
             {
-                _logger?.Error($"Incorrect or empty com_port name: {_config?.Name}", LogSource.SERIAL_PORT);
+                _logger?.Error($"Incorrect or empty com_port name: {_config?.Name}", this.ToString());
                 return false;
             }
             if (_port?.IsOpen == true)
             {
-                _logger?.Error($"Try connect to busy com_port: {_config?.Name}", LogSource.SERIAL_PORT);
+                _logger?.Error($"Try connect to busy com_port: {_config?.Name}", this.ToString());
                 return false;
             }
 
@@ -202,26 +166,26 @@ namespace Arrma.Device.Core.SerialPort
                     _port.Open();
                     // upd config
                     _config.Name = _port.PortName;
-                    _logger?.Information($"Com port {_port.PortName} is open.", LogSource.SERIAL_PORT);
+                    _logger?.Information($"Com port {_port.PortName} is open.", this.ToString());
                     return true;
 
                 }
                 catch (UnauthorizedAccessException e)
                 {
                     // Порт занят
-                    _logger?.Error($"Com port {_port.PortName} is busy.", LogSource.SERIAL_PORT, e);
+                    _logger?.Error($"Com port {_port.PortName} is busy.", this.ToString(), e);
                     return false;
                 }
                 catch (ArgumentException e)
                 {
                     // Неверная конфигурация порта
-                    _logger?.Error($"Invalid com port {_port.PortName} configuration.", LogSource.SERIAL_PORT, e);
+                    _logger?.Error($"Invalid com port {_port.PortName} configuration.", this.ToString(), e);
                     return false;
                 }
                 catch (Exception e)
                 {
                     // Ошибка ввода-вывода
-                    _logger?.Error($"Error opening com port {_port.PortName}.", LogSource.SERIAL_PORT, e);
+                    _logger?.Error($"Error opening com port {_port.PortName}.", this.ToString(), e);
                     return false;
                 }
             }
@@ -235,12 +199,12 @@ namespace Arrma.Device.Core.SerialPort
         {
             if (string.IsNullOrWhiteSpace(_config?.Name) || (bool)!_config?.Name.StartsWith("COM"))
             {
-                _logger?.Error($"Incorrect or empty com_port name: {_config?.Name}", LogSource.SERIAL_PORT);
+                _logger?.Error($"Incorrect or empty com_port name: {_config?.Name}", this.ToString());
                 return false;
             }
             if (_port?.IsOpen == true)
             {
-                _logger?.Error($"Try connect to busy com_port: {_config?.Name}", LogSource.SERIAL_PORT);
+                _logger?.Error($"Try connect to busy com_port: {_config?.Name}", this.ToString());
                 return false;
             }
 
@@ -267,26 +231,26 @@ namespace Arrma.Device.Core.SerialPort
                     _config.StopBits = config.StopBits;
                     _config.ReadTimeout = config.ReadTimeout;
                     _config.WriteTimeout = config.WriteTimeout;
-                    _logger?.Information($"Com port {_port.PortName} is open.", LogSource.SERIAL_PORT);
+                    _logger?.Information($"Com port {_port.PortName} is open.", this.ToString());
                     return true;
 
                 }
                 catch (UnauthorizedAccessException e)
                 {
                     // Порт занят
-                    _logger?.Error($"Com port {_port.PortName} is busy.", LogSource.SERIAL_PORT, e);
+                    _logger?.Error($"Com port {_port.PortName} is busy.", this.ToString(), e);
                     return false;
                 }
                 catch (ArgumentException e)
                 {
                     // Неверная конфигурация порта
-                    _logger?.Error($"Invalid com port {_port.PortName} configuration.", LogSource.SERIAL_PORT, e);
+                    _logger?.Error($"Invalid com port {_port.PortName} configuration.", this.ToString(), e);
                     return false;
                 }
                 catch (Exception e)
                 {
                     // Ошибка ввода-вывода
-                    _logger?.Error($"Error opening com port {_port.PortName}.", LogSource.SERIAL_PORT, e);
+                    _logger?.Error($"Error opening com port {_port.PortName}.", this.ToString(), e);
                     return false;
                 }
             }
@@ -299,7 +263,7 @@ namespace Arrma.Device.Core.SerialPort
         {
             if (_port?.IsOpen == false)
             {
-                _logger?.Information($"Com port {_port.PortName} is already closed.", LogSource.SERIAL_PORT);
+                _logger?.Information($"Com port {_port.PortName} is already closed.", this.ToString());
                 return true;
             }
 
@@ -311,12 +275,12 @@ namespace Arrma.Device.Core.SerialPort
                 {
                     _port.Close();
                     _port.PortName = "";
-                    _logger?.Information($"Com port {_port.PortName} is closed.", LogSource.SERIAL_PORT);
+                    _logger?.Information($"Com port {_port.PortName} is closed.", this.ToString());
                     return true;
                 }
                 catch (Exception e)
                 {
-                    _logger?.Error($"Error close com port {_port.PortName}", LogSource.SERIAL_PORT, e);
+                    _logger?.Error($"Error close com port {_port.PortName}", this.ToString(), e);
                     return false;
                 }
                 finally
@@ -344,7 +308,7 @@ namespace Arrma.Device.Core.SerialPort
             }
             catch (Exception e)
             {
-                _logger?.Error(e.Message, LogSource.SERIAL_PORT, e);
+                _logger?.Error(e.Message, this.ToString(), e);
                 return false;
             }
         }

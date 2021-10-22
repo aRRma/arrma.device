@@ -13,7 +13,7 @@ namespace Arrma.Device.Core.SerialPort
         public int WriteTimeout { get; set; }
 
         /// <summary>
-        /// Стандартные настройки 9600, 8бит, без четности, 1 стоповый, таймауты 100мс, порт не известен
+        /// Стандартные настройки 9600, 8бит, без четности, 1 стоповый, таймауты 100мс, порт COM1
         /// </summary>
         public SerialPortConfig()
         {

@@ -13,7 +13,6 @@ namespace Arrma.Device.Core.Transport
         public string Command { get; set; }
         public string Data { get; set; }
         public int Length { get; set; }
-        public string GetDataString => string.Join("", Data);
 
         public AtRequest(string command, string data)
         {
