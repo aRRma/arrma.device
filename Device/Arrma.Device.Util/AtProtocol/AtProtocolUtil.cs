@@ -13,7 +13,8 @@ namespace Arrma.Device.Util.AtProtocol
         /// <summary>
         /// Парсинг кода IMSI (Mobile Subscriber Identity - типа оператора)
         /// </summary>
-        /// <param name="data"></param>
+        /// <param name="mcc">Mobile Country Code — мобильный код страны</param>
+        /// <param name="imsi">International Mobile Subscriber Identity (IMSI) — международный идентификатор мобильного абонента </param>
         /// <returns></returns>
         public static SimOperator CimiParse(int mcc, int imsi)
         {
