@@ -20,13 +20,17 @@ namespace Arrma.Device.Interfaces.Device.Base
         /// </summary>
         public string SimSerialId { get; set; }
         /// <summary>
+        /// Название оператора мобильной связи
+        /// </summary>
+        public string SimOperatorName { get; set; }
+        /// <summary>
         /// Типа оператора мобильной связи
         /// </summary>
-        public SimOperatorType SimOperator { get; set; }
+        public SimOperator SimOperator { get; set; }
         /// <summary>
         /// Баланс на сим карте
         /// </summary>
-        public double Balance { get; set; }
+        public string Balance { get; set; }
     }
 
     /// <summary>
@@ -43,9 +47,11 @@ namespace Arrma.Device.Interfaces.Device.Base
         /// </summary>
         public double Error { get; set; }
 
-        public override string ToString() => $"Палочек связи {Asu}, процент ошибок <{Error}";
+        public override string ToString() => $"Палочек связи {Asu}, процент ошибок < {Error}";
     }
-
+    /// <summary>
+    /// Структура описывающая оператора мобильной связи
+    /// </summary>
     public struct SimOperator
     {
         /// <summary>

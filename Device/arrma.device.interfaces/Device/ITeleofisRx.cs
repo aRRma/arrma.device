@@ -10,14 +10,10 @@ namespace Arrma.Device.Interfaces.Device
         /// <summary>
         /// Идент. производителя модема
         /// </summary>
-        public string ManufIdent { get; set; }
+        public string ManufactureId { get; set; }
         /// <summary>
         /// Идент. модели модуля модема
         /// </summary>
-        public string ModelIdent { get; set; }
-        /// <summary>
-        /// Серийный номер IMEI модема
-        /// </summary>
-        public string ModemIMEI { get; set; }
+        public string ModelId { get; set; }
     }
 }

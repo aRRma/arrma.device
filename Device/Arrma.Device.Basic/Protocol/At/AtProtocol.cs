@@ -137,46 +137,7 @@ namespace Arrma.Device.Basic.Protocol.At
                 return false;
             }
         }
-        /// <summary>
-        /// Проверить тип регистрации в сети. Команда AT+CREG?
-        /// </summary>
-        /// <returns></returns>
-        public NetworkRegType CheckNetworkRegType()
-        {
-            try
-            {
-                var response = SendCommand(new AtRequest(_commands[AtCommand.AT_CREG], "?"), AtTransport.ShortTimeout, 20);
-                if (!response.Valid) return NetworkRegType.UNKNOWN;
-                return AtProtocolUtil.CregParse(response.Data.Substring(response.Data.IndexOf(",") + 1, 1));
-            }
-            catch (Exception e)
-            {
-                _logger?.Error($"Error at method \"CheckNetworkRegType\"\n{e.Message}", this.ToString(), e);
-                return NetworkRegType.UNKNOWN;
-            }
-        }
-        /// <summary>
-        /// Проверит качество связи в сети. Команда AT+CSQ
-        /// </summary>
-        /// <returns></returns>
-        public QosInfo CheckNetworkQoS()
-        {
-            try
-            {
-                var response = SendCommand(new AtRequest(_commands[AtCommand.AT_CSQ], ""), AtTransport.ShortTimeout, 21);
-                if (!response.Valid) return new QosInfo();
-                int rssi = int.Parse(response.Data[response.Data.IndexOf(' ')..response.Data.IndexOf(',')]);
-                var temp = response.Data.Substring(response.Data.IndexOf(',') + 1);
-                int ber = int.Parse(temp.Remove(temp.IndexOf('\r')));
-                return AtProtocolUtil.CsqParse(rssi, ber);
-            }
-            catch (Exception e)
-            {
-                _logger?.Error($"Error at method \"CheckNetworkQoS\"\n{e.Message}", this.ToString(), e);
-                return new QosInfo();
-            }
-        }
-        #endregion
+   #endregion
 
         #region Информация об модеме
         /// <summary>
@@ -270,10 +231,10 @@ namespace Arrma.Device.Basic.Protocol.At
             }
         }
         /// <summary>
-        /// Запросить информацию об операторе связи. Команда AT+COPS?
+        /// Запросить название оператора связи. Команда AT+COPS?
         /// </summary>
         /// <returns>Имя оператора связи в виде строки</returns>
-        public string GetOperatorInfo()
+        public string GetOperatorName()
         {
             try
             {
@@ -305,6 +266,64 @@ namespace Arrma.Device.Basic.Protocol.At
             {
                 _logger?.Error($"Error at method \"GetOperatorType\"\n{e.Message}", this.ToString(), e);
                 return new SimOperator();
+            }
+        }
+        #endregion
+
+        #region Управление модемом
+        /// <summary>
+        /// Перезагрузка модуля модема. Команда AT#REBOOT
+        /// </summary>
+        /// <returns></returns>
+        public bool ModemReboot()
+        {
+            try
+            {
+                return SendCommand(new AtRequest(_commands[AtCommand.AT_REBOOT], ""), AtTransport.ShortTimeout, 0).Valid;
+            }
+            catch (Exception e)
+            {
+                _logger?.Error($"Error at method \"ModemReboot\"\n{e.Message}", this.ToString(), e);
+                return false;
+            }
+        }
+        /// <summary>
+        /// Проверить тип регистрации в сети. Команда AT+CREG?
+        /// </summary>
+        /// <returns></returns>
+        public NetworkRegType CheckNetworkRegType()
+        {
+            try
+            {
+                var response = SendCommand(new AtRequest(_commands[AtCommand.AT_CREG], "?"), AtTransport.ShortTimeout, 20);
+                if (!response.Valid) return NetworkRegType.UNKNOWN;
+                return AtProtocolUtil.CregParse(response.Data.Substring(response.Data.IndexOf(",") + 1, 1));
+            }
+            catch (Exception e)
+            {
+                _logger?.Error($"Error at method \"CheckNetworkRegType\"\n{e.Message}", this.ToString(), e);
+                return NetworkRegType.UNKNOWN;
+            }
+        }
+        /// <summary>
+        /// Проверит качество связи в сети. Команда AT+CSQ
+        /// </summary>
+        /// <returns></returns>
+        public QosInfo CheckNetworkQoS()
+        {
+            try
+            {
+                var response = SendCommand(new AtRequest(_commands[AtCommand.AT_CSQ], ""), AtTransport.ShortTimeout, 21);
+                if (!response.Valid) return new QosInfo();
+                int rssi = int.Parse(response.Data[response.Data.IndexOf(' ')..response.Data.IndexOf(',')]);
+                var temp = response.Data.Substring(response.Data.IndexOf(',') + 1);
+                int ber = int.Parse(temp.Remove(temp.IndexOf('\r')));
+                return AtProtocolUtil.CsqParse(rssi, ber);
+            }
+            catch (Exception e)
+            {
+                _logger?.Error($"Error at method \"CheckNetworkQoS\"\n{e.Message}", this.ToString(), e);
+                return new QosInfo();
             }
         }
         /// <summary>
@@ -351,25 +370,6 @@ namespace Arrma.Device.Basic.Protocol.At
             {
                 _logger?.Error($"Error at method \"GetSimBalance\"\n{e.Message}", this.ToString(), e);
                 return "";
-            }
-        }
-        #endregion
-
-        #region Управление модемом
-        /// <summary>
-        /// Перезагрузка модуля модема. Команда AT#REBOOT
-        /// </summary>
-        /// <returns></returns>
-        public bool ModemReboot()
-        {
-            try
-            {
-                return SendCommand(new AtRequest(_commands[AtCommand.AT_REBOOT], ""), AtTransport.ShortTimeout, 0).Valid;
-            }
-            catch (Exception e)
-            {
-                _logger?.Error($"Error at method \"ModemReboot\"\n{e.Message}", this.ToString(), e);
-                return false;
             }
         }
         #endregion

@@ -28,10 +28,6 @@ namespace Arrma.Device.Interfaces.Device.Base
         /// </summary>
         public string FirmwareVersion { get; set; }
         /// <summary>
-        /// Версия железа
-        /// </summary>
-        public string HardwareVersion { get; set; }
-        /// <summary>
         /// Тип интерфейса устройства
         /// </summary>
         public InterfaceType Interface { get; set; }
