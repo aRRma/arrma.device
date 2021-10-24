@@ -4,7 +4,19 @@
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>Arrma.Device.Interfaces</AssemblyName>
     <RootNamespace>Arrma.Device.Interfaces</RootNamespace>
+	  <Authors>aRRma</Authors>
+	  <Description>акет интерфейсов для проекта Arrma.Device под .NET5</Description>
+	  <Copyright>arrma99@gmail.com</Copyright>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+	  <PackageTags>Arrma, interface, AT</PackageTags>
+	  <SignAssembly>true</SignAssembly>
+	  <AssemblyOriginatorKeyFile>Arrma.Device.Interfaces.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+
+  <PropertyGroup>
+	  <Version>0.0.1</Version>
+	  <PackageReleaseNotes>Запуск проекта</PackageReleaseNotes>
+	</PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="DataBase\**" />
