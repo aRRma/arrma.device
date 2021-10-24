@@ -1,28 +1,33 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <AssemblyName>Arrma.Device.Util</AssemblyName>
-    <RootNamespace>Arrma.Device.Util</RootNamespace>
-    <Authors>aRRma</Authors>
-    <Company>aRRma</Company>
-    <Description>Проект утилит для работы с периферийными устройствами платежного терминала под .NET5</Description>
-    <Copyright>arrma99@gmail.com</Copyright>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageTags>Arrma, util, AT</PackageTags>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>Arrma.Device.Util.snk</AssemblyOriginatorKeyFile>
-	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-  </PropertyGroup>
-
 	<PropertyGroup>
-		<Version>0.0.1</Version>
-		<PackageReleaseNotes>Запуск проекта. Добавлены утилиты для парсинга ответов AT протокола, расчета CRC.</PackageReleaseNotes>
+		<TargetFramework>net5.0</TargetFramework>
+		<AssemblyName>Arrma.Device.Util</AssemblyName>
+		<RootNamespace>Arrma.Device.Util</RootNamespace>
+		<Authors>aRRma</Authors>
+		<Company>aRRma</Company>
+		<Copyright>arrma99@gmail.com</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageTags>Arrma, util, AT</PackageTags>
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>Arrma.Device.Util.snk</AssemblyOriginatorKeyFile>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Arrma.Device.Enum\Arrma.Device.Enum.csproj" />
-    <ProjectReference Include="..\Arrma.Device.Interfaces\Arrma.Device.Interfaces.csproj" />
-  </ItemGroup>
+	<PropertyGroup>
+		<Version>0.0.2</Version>
+		<Description>Пакет утилит для работы с периферийными устройствами платежного терминала под .NET5</Description>
+		<PackageReleaseNotes>Фикс XML комментариев</PackageReleaseNotes>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DocumentationFile>C:\Users\arrma_corsair\source\repos\arrma.device\Device\Arrma.Device.Util\Arrma.Device.Util.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Arrma.Device.Enum\Arrma.Device.Enum.csproj" />
+		<ProjectReference Include="..\Arrma.Device.Interfaces\Arrma.Device.Interfaces.csproj" />
+	</ItemGroup>
 
 </Project>

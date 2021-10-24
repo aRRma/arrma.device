@@ -6,19 +6,25 @@
 		<RootNamespace>Arrma.Device</RootNamespace>
 		<Version>0.0.1</Version>
 		<Authors>aRRma</Authors>
-		<Description>Реализация работы с периферийными устройствами платежного терминала под .NET5</Description>
 		<Copyright>arrma99@gmail.com</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageTags>Device, serial, com, AT</PackageTags>
+		<PackageTags>Arrma, device, serial, com, AT, modem</PackageTags>
 		<PackageReleaseNotes>Запуск проекта</PackageReleaseNotes>
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>Arrma.Device.snk</AssemblyOriginatorKeyFile>
+		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<Version>0.0.1</Version>
-		<PackageReleaseNotes>Запуск проекта</PackageReleaseNotes>
+		<Version>0.0.3</Version>
+		<Description>Пакет реализация работы с периферийными устройствами платежного терминала под .NET5</Description>
+		<PackageReleaseNotes>Фикс XML комментариев</PackageReleaseNotes>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DocumentationFile>C:\Users\arrma_corsair\source\repos\arrma.device\Device\Arrma.Device\Arrma.Device.xml</DocumentationFile>
+		<Optimize>false</Optimize>
 	</PropertyGroup>
 	<ItemGroup>
 		<Compile Remove="Devices\**" />

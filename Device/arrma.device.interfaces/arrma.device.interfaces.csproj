@@ -1,31 +1,35 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <AssemblyName>Arrma.Device.Interfaces</AssemblyName>
-    <RootNamespace>Arrma.Device.Interfaces</RootNamespace>
-	  <Authors>aRRma</Authors>
-	  <Description>акет интерфейсов для проекта Arrma.Device под .NET5</Description>
-	  <Copyright>arrma99@gmail.com</Copyright>
-	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
-	  <PackageTags>Arrma, interface, AT</PackageTags>
-	  <SignAssembly>true</SignAssembly>
-	  <AssemblyOriginatorKeyFile>Arrma.Device.Interfaces.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-
-  <PropertyGroup>
-	  <Version>0.0.1</Version>
-	  <PackageReleaseNotes>Запуск проекта</PackageReleaseNotes>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<AssemblyName>Arrma.Device.Interfaces</AssemblyName>
+		<RootNamespace>Arrma.Device.Interfaces</RootNamespace>
+		<Authors>aRRma</Authors>
+		<Copyright>arrma99@gmail.com</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageTags>Arrma, interface, AT</PackageTags>
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>Arrma.Device.Interfaces.snk</AssemblyOriginatorKeyFile>
 	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="DataBase\**" />
-    <EmbeddedResource Remove="DataBase\**" />
-    <None Remove="DataBase\**" />
-  </ItemGroup>
+	<PropertyGroup>
+		<Version>0.0.2</Version>
+		<Description>Пакет интерфейсов для проекта Arrma.Device под .NET5</Description>
+		<PackageReleaseNotes>Фикс XML комментариев</PackageReleaseNotes>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Arrma.Device.Enum\Arrma.Device.Enum.csproj" />
-  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DocumentationFile>C:\Users\arrma_corsair\source\repos\arrma.device\Device\Arrma.Device.Interfaces\Arrma.Device.Interfaces.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="DataBase\**" />
+		<EmbeddedResource Remove="DataBase\**" />
+		<None Remove="DataBase\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Arrma.Device.Enum\Arrma.Device.Enum.csproj" />
+	</ItemGroup>
 
 </Project>

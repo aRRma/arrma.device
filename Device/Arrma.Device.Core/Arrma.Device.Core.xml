@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Arrma.Device.Core</name>
+    </assembly>
+    <members>
+        <member name="P:Arrma.Device.Core.SerialPort.DeviceSerialPort.IsConnected">
+            <summary>
+            Статус подключения устройства
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Core.SerialPort.DeviceSerialPort.PortName">
+            <summary>
+            Название COM порта устройства
+            </summary>
+        </member>
+        <member name="M:Arrma.Device.Core.SerialPort.DeviceSerialPort.GetSortComPorts">
+            <summary>
+            Возвращает отсортированный список доступных COM портов в системе
+            </summary>
+            <returns>Массив имен COM портов</returns>
+        </member>
+        <member name="M:Arrma.Device.Core.SerialPort.DeviceSerialPort.Connect">
+            <summary>
+            Подключится к устройству. Настройки COM порта берутся из конфига объекта.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Arrma.Device.Core.SerialPort.DeviceSerialPort.Connect(System.String)">
+            <summary>
+            Подключится к устройству на конкретном COM порту. Настройки COM порта берутся из конфига объекта. Название порта обновляется в конфиге объекта если удачно подключились.
+            </summary>
+            <param name="port"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Arrma.Device.Core.SerialPort.DeviceSerialPort.Connect(Arrma.Device.Core.SerialPort.SerialPortConfig)">
+            <summary>
+            Подключится к устройству используя конфиг. Конфиг объекта обновляется если удачно подключились.
+            </summary>
+            <param name="config"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Arrma.Device.Core.SerialPort.DeviceSerialPort.Disconnect">
+            <summary>
+            Отключиться от устройства. Имя порта сбрасывается на "" пустое.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Arrma.Device.Core.SerialPort.DeviceSerialPort.Reconnect">
+            <summary>
+            Переподключиться к устройству с текущим конфигом.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Arrma.Device.Core.SerialPort.SerialPortConfig.#ctor">
+            <summary>
+            Стандартные настройки 9600, 8бит, без четности, 1 стоповый, таймауты 100мс, порт COM1
+            </summary>
+        </member>
+        <member name="M:Arrma.Device.Core.SerialPort.SerialPortConfig.#ctor(Arrma.Device.Core.SerialPort.SerialPortConfig)">
+            <summary>
+            Стандартные настройки 9600, 8бит, без четности, 1 стоповый, таймауты 100мс, порт не известен
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Core.Transport.AtRequest">
+            <summary>
+            Структура пакета запроса AT протокола
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Core.Transport.AtResponse">
+            <summary>
+            Структура пакета ответа AT протокола
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Core.Transport.At.AtTransport.SendingResponseAttempt">
+            <summary>
+            Количество попыток отправки команд устройству
+            </summary>
+        </member>
+        <member name="M:Arrma.Device.Core.Transport.At.AtTransport.SearchPort(Arrma.Device.Interfaces.Protocol.IRequest{System.String},System.Int32)">
+            <summary>
+            Ищет COM порт к которому подключено устройство
+            </summary>
+            <param name="request">Пакет команды для запроса</param>
+            <param name="byteAnswer">Количество байт полного ответа на команду запроса</param>
+            <returns></returns>
+        </member>
+        <member name="M:Arrma.Device.Core.Transport.At.AtTransport.SendCommand(Arrma.Device.Interfaces.Protocol.IRequest{System.String},System.Int32,System.Int32)">
+            <summary>
+            Формирует полностью команду и отправляет ее устройству (если требуется, то читает ответ). Если byteAnswer не задан, то ответ не ожидается.
+            </summary>
+            <param name="request">Пакет команды</param>
+            <param name="timeout">Таймаут ответа на команду</param>
+            <param name="byteAnswer">Количество байт полного ответа на команду (по умолчанию 6 байт для ответа OK)</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,307 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Arrma.Device.Interfaces</name>
+    </assembly>
+    <members>
+        <member name="T:Arrma.Device.Interfaces.Device.Base.IBaseBankCardReader">
+            <summary>
+            Базовый интерфейс типового считывателя банковских карт
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Interfaces.Device.Base.IBaseBillAcceptor">
+            <summary>
+            Базовый интерфейс типового купюроприемника
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Interfaces.Device.Base.IBaseCardReader">
+            <summary>
+            Базовый интерфейс типового считывателя карт
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Interfaces.Device.Base.IBaseCoinAcceptor">
+            <summary>
+            Базовый интерфейс типового монетоприемника
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Interfaces.Device.Base.IBaseDevice">
+            <summary>
+            Базовый интерфейс устройства
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Device.Base.IBaseDevice.Name">
+            <summary>
+            Название устройства
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Device.Base.IBaseDevice.Address">
+            <summary>
+            Адрес устройства в сети
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Device.Base.IBaseDevice.InitDone">
+            <summary>
+            Статус инициализации устройства
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Device.Base.IBaseDevice.SerialNumber">
+            <summary>
+            Серийный номер
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Device.Base.IBaseDevice.FirmwareVersion">
+            <summary>
+            Версия прошивки
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Device.Base.IBaseDevice.Interface">
+            <summary>
+            Тип интерфейса устройства
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Device.Base.IBaseDevice.Protocol">
+            <summary>
+            Тип протокола устройства
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Interfaces.Device.Base.IBaseHopper">
+            <summary>
+            Базовый интерфейс типового хоппера
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Interfaces.Device.Base.IBaseModem">
+            <summary>
+            Базовый интерфейс типового модема
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Device.Base.IBaseModem.NetworkRegistration">
+            <summary>
+            Тип регистрации модема в сети
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Device.Base.IBaseModem.QoSInfo">
+            <summary>
+            Качество сигнала
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Device.Base.IBaseModem.SimSerialId">
+            <summary>
+            Серийный номер SIM-карты
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Device.Base.IBaseModem.SimOperatorName">
+            <summary>
+            Название оператора мобильной связи
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Device.Base.IBaseModem.SimOperator">
+            <summary>
+            Типа оператора мобильной связи
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Device.Base.IBaseModem.Balance">
+            <summary>
+            Баланс на сим карте
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Interfaces.Device.Base.QosInfo">
+            <summary>
+            Структура описывающая качество связи модема в сети
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Device.Base.QosInfo.Asu">
+            <summary>
+            Arbitrary strength unit (количество делений связи)
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Device.Base.QosInfo.Error">
+            <summary>
+            Error percent (верхн. граница ошибки)	
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Interfaces.Device.Base.SimOperator">
+            <summary>
+            Структура описывающая оператора мобильной связи
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Device.Base.SimOperator.Type">
+            <summary>
+            Тип оператора из перечисления
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Device.Base.SimOperator.Country">
+            <summary>
+            Страна оператора
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Interfaces.Device.Base.IBaseOnlineCashbox">
+            <summary>
+            Базовый интерфейс типовой онлайн кассы
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Interfaces.Device.Base.IBasePlc">
+            <summary>
+            Базовый интерфейс типового ПЛК
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Interfaces.Device.Base.IBaseQrScanner">
+            <summary>
+            Базовый интерфейс типового сканера QR кодов
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Interfaces.Device.Base.IBaseWdt">
+            <summary>
+            Базовый интерфейс типового сторожевого таймера
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Interfaces.Device.ICashcodeSm">
+            <summary>
+            Интерфейс купюроприемника Cashcode Sm
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Interfaces.Device.IImpulsCardReader">
+            <summary>
+            Интерфейс считывателя карт Impuls CardReader
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Interfaces.Device.IImpulsPlc">
+            <summary>
+            Интерфейс ПЛК Impuls PLC
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Interfaces.Device.IImpulsWdt">
+            <summary>
+            Интерфейс сторожевого таймера Impuls Wdt
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Interfaces.Device.IKaznacheyFa">
+            <summary>
+            Интерфейс онлайн кассы Казначей ФА
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Interfaces.Device.INriG13">
+            <summary>
+            Интерфейс монетоприемника NRI G13
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Interfaces.Device.ITeleofisRx">
+            <summary>
+            Интерфейс модема Teleofis серии RX
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Device.ITeleofisRx.ManufactureId">
+            <summary>
+            Идент. производителя модема
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Device.ITeleofisRx.ModelId">
+            <summary>
+            Идент. модели модуля модема
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Interfaces.Device.IVivoPay">
+            <summary>
+            Интерфейс считывателя банковских карт ViVOpay Kiosk III
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Interfaces.Logger.ILogger">
+            <summary>
+            Интерфейс логгера
+            </summary>
+        </member>
+        <member name="M:Arrma.Device.Interfaces.Logger.ILogger.RunLogger">
+            <summary>
+            Запуск логгера
+            </summary>
+        </member>
+        <member name="M:Arrma.Device.Interfaces.Logger.ILogger.Write(System.String,System.String)">
+            <summary>
+            Записать любое сообщение в логи
+            </summary>
+            <param name="message"></param>
+            <param name="source"></param>
+        </member>
+        <member name="M:Arrma.Device.Interfaces.Logger.ILogger.Debug(System.String,System.String)">
+            <summary>
+            Записать сообщение в логи в режиме отладки
+            </summary>
+            <param name="message"></param>
+            <param name="source"></param>
+        </member>
+        <member name="M:Arrma.Device.Interfaces.Logger.ILogger.Information(System.String,System.String)">
+            <summary>
+            Записать сообщение в логи
+            </summary>
+            <param name="message"></param>
+            <param name="source"></param>
+        </member>
+        <member name="M:Arrma.Device.Interfaces.Logger.ILogger.Warning(System.String,System.String)">
+            <summary>
+            Записать предупреждение в логи 
+            </summary>
+            <param name="message"></param>
+            <param name="source"></param>
+        </member>
+        <member name="M:Arrma.Device.Interfaces.Logger.ILogger.Error(System.String,System.String,System.Exception)">
+            <summary>
+            Записать ошибку в логи
+            </summary>
+            <param name="message"></param>
+            <param name="source"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="M:Arrma.Device.Interfaces.Logger.ILogger.Fatal(System.String,System.String,System.Exception)">
+            <summary>
+            Записать критическую ошибку в логи
+            </summary>
+            <param name="message"></param>
+            <param name="source"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="T:Arrma.Device.Interfaces.Protocol.IProtocol`1">
+            <summary>
+            Интерфейс протокола
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Interfaces.Protocol.IRequest`1">
+            <summary>
+            Интерфейс пакета запроса
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Protocol.IRequest`1.Command">
+            <summary>
+            Код команды запроса
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Protocol.IRequest`1.Data">
+            <summary>
+            Обобщенный массив пакета запроса
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Protocol.IRequest`1.Length">
+            <summary>
+            Длина запроса
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Interfaces.Protocol.IResponse`1">
+            <summary>
+            Интерфейс пакета ответа
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Protocol.IResponse`1.Data">
+            <summary>
+            Обобщенный массив пакет ответа
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Protocol.IResponse`1.Length">
+            <summary>
+            Длина пакета
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Interfaces.Protocol.IResponse`1.Valid">
+            <summary>
+            Прошел ли пакет валидацию (CRC или еще что-то)
+            </summary>
+        </member>
+    </members>
+</doc>

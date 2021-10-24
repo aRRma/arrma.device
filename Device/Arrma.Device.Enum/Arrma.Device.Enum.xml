@@ -1,0 +1,418 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Arrma.Device.Enum</name>
+    </assembly>
+    <members>
+        <member name="T:Arrma.Device.Enum.AtCommand">
+            <summary>
+            Перечисление команд AT протокола для модема Teleofis RX108-R2
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommand.AT_">
+            <summary>
+            команда проверки связи с модемом  
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommand.AT_E">
+            <summary>
+            команда отключения эхо  (if parameter is omitted, the command has the same behaviour of ATE0)
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommand.AT_S0">
+            <summary>
+            команда отключения автоматического ответа на звонок после первого гудка (0 - auto answer disabled (factory default))
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommand.AT_CLIP">
+            <summary>
+            команда включения определение номера входящего звонка
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommand.AT_CMGF">
+            <summary>
+            команда перехода из PDU режима в текстовый режим СМС
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommand.AT_CREG">
+            <summary>
+            команда запроса статуса регистрации модема в сети
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommand.AT_CSQ">
+            <summary>
+            команда запроса статуса качества связи
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommand.AT_GMI">
+            <summary>
+            команда запроса идент. производителя
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommand.AT_GMM">
+            <summary>
+            команда запроса идент. модели
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommand.AT_GMR">
+            <summary>
+            команда запроса версии по
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommand.AT_CGSN">
+            <summary>
+            команда запроса серийного номера
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommand.AT_CCID">
+            <summary>
+            команда запроса серийного номера сим-карты
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommand.AT_COPS">
+            <summary>
+            команда запроса информации об операторе
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommand.AT_CIMI">
+            <summary>
+            команда запроса кода IMSI (Mobile Subscriber Identity) тип оператора
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommand.AT_CUSD">
+            <summary>
+            команда запроса USSD команды для запроса баланса
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommand.AT_REBOOT">
+            <summary>
+            команда перезагрузки модема
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommand.AT_CPMS">
+            <summary>
+            команда запроса статуса хранилища смс сообщений
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommand.AT_CMGL">
+            <summary>
+            команда запроса все смс сообщения
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommand.AT_CMGR">
+            <summary>
+            команда чтения смс под номером 1
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommand.AT_CMGD">
+            <summary>
+            команда удаления всех смс сообщений
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommand.AT_CMGS">
+            <summary>
+            команда запроса на отправку смс на номер
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommand.ENTER_SMS_TEXT">
+            <summary>
+            команда ввода смс после приглашения модема
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommand.AT_H">
+            <summary>
+            отклонить звонок
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommandEnd.NONE">
+            <summary>
+            Не известно
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommandEnd.CR">
+            <summary>
+            CR (0x0D HEX) (\r escape) [Enter]
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommandEnd.SUB">
+            <summary>
+            SUB (0x1A HEX) (\x1A escape) [Ctrl Z]
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommandEnd.SPACE">
+            <summary>
+            _ (0x20 HEX) (\x20 escape) [Space]
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommandEnd.LF">
+            <summary>
+            LF (0x0A HEX) (\n escape) [Line Feed]
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtCommandEnd.CRLF">
+            <summary>
+            CRLF
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Enum.AtModemState">
+            <summary>
+            Перечисление состояний модема
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.NONE">
+            <summary>
+            ничего не делаем
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.INIT_DONE">
+            <summary>
+            настройка модема завершена
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.SEND_SOME_COMM">
+            <summary>
+            отправить любую команду
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.READ_ANSWER">
+            <summary>
+            прочитать ответ на команду
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.WAIT_CALL">
+            <summary>
+            ожидание звонка
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.EXECUTE_COMMAND">
+            <summary>
+            выполнение команды по звонку
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.SEND_SMS">
+            <summary>
+            отправить смс
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.READ_SMS">
+            <summary>
+            прочитать смс
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.ATE">
+            <summary>
+            отключить эхо
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.ATS">
+            <summary>
+            отключение автоответа на звонок
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.ATCLIP">
+            <summary>
+            включить АОН
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.ATCMGF">
+            <summary>
+            перейти в текстовый режим
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.ATCESTHLCK">
+            <summary>
+            выключить авто сброс звонка (на время пока мы настраиваемся)
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.ATCREG">
+            <summary>
+            проверить тип регистрации в сети
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.ATCSQ">
+            <summary>
+            проверить качество связи
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.ATGMI">
+            <summary>
+            запросить идент. произодителя модема
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.ATGMM">
+            <summary>
+            запросить идент. модели модуля модема
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.ATGMR">
+            <summary>
+            запросить идент. версии по модуля модема
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.ATCGSN">
+            <summary>
+            запросить серийный номер IMEI модема
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.ATCCID">
+            <summary>
+            запросить серийный номер SIM-карты
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.ATCIMI">
+            <summary>
+            запросить код IMSI (Mobile Subscriber Identity) типа оператора
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.ATCUSD">
+            <summary>
+            запросить баланс
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.ATCPMS">
+            <summary>
+            статус хранилища смс
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.ATCMGL">
+            <summary>
+            запросить все смс
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.ATCMGR">
+            <summary>
+            запросить смс под номером n
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.ATCMGD">
+            <summary>
+            удалить все смс
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.ATCMGS">
+            <summary>
+            отправить смс
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.ATREBOOT">
+            <summary>
+            перезагрузка модема
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.PING">
+            <summary>
+            пинг модема
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.AtModemState.ATCMAR">
+            <summary>
+            сброс в заводские настройки
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Enum.NetworkRegType">
+            <summary>
+            Перечисление статуса регистрации модема в сети
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.NetworkRegType.NOT_REG">
+            <summary>
+            не зарегистрирован, поиска сети нет
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.NetworkRegType.REGISTERED">
+            <summary>
+            зарегистрирован, домашняя сеть
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.NetworkRegType.SEARCH">
+            <summary>
+            не зарегистрирован, идёт поиск новой сети
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.NetworkRegType.DENIED">
+            <summary>
+            регистрация отклонена
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.NetworkRegType.UNKNOWN">
+            <summary>
+            неизвестно
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.NetworkRegType.ROAMING">
+            <summary>
+            роуминг
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Enum.SimOperatorType">
+            <summary>
+            Перечисление типов операторов сим карт
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Enum.InterfaceType">
+            <summary>
+            Перечисление типов интерфейса
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.InterfaceType.NONE">
+            <summary>
+            Неизвестно
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.InterfaceType.USB">
+            <summary>
+            USB порт
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.InterfaceType.COM">
+            <summary>
+            COM порт (RS232)
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.InterfaceType.MDB">
+            <summary>
+            MultiDrop шина
+            </summary>
+        </member>
+        <member name="T:Arrma.Device.Enum.ProtocolType">
+            <summary>
+            Перечисление типов протоколов
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.ProtocolType.NONE">
+            <summary>
+            Неизвестно
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.ProtocolType.IMPULS">
+            <summary>
+            Протокол Импульс
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.ProtocolType.CCTALCK">
+            <summary>
+            Протокол ccTalk
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.ProtocolType.CCNET">
+            <summary>
+            Протокол ccNet
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.ProtocolType.MDB">
+            <summary>
+            Протокол MDB
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.ProtocolType.AT">
+            <summary>
+            Протокол AT
+            </summary>
+        </member>
+        <member name="F:Arrma.Device.Enum.ProtocolType.PULSE">
+            <summary>
+            Протокол импульсный
+            </summary>
+        </member>
+    </members>
+</doc>

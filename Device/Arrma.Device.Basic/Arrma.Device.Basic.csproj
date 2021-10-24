@@ -1,32 +1,37 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <AssemblyName>Arrma.Device.Basic</AssemblyName>
-    <RootNamespace>Arrma.Device.Basic</RootNamespace>
-    <Authors>aRRma</Authors>
-    <Description>Проект базовой реализации протоколов периферийных устройств платежного терминала под .NET5</Description>
-    <Copyright>arrma99@gmail.com</Copyright>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageTags>Arrma, device, AT, protocol</PackageTags>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>Arrma.Device.Basic.snk</AssemblyOriginatorKeyFile>
-	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-  </PropertyGroup>
-
 	<PropertyGroup>
-		<Version>0.0.1</Version>
-		<PackageReleaseNotes>Запуск проекта. Добавлена базовая реализация AT протокола.</PackageReleaseNotes>
+		<TargetFramework>net5.0</TargetFramework>
+		<AssemblyName>Arrma.Device.Basic</AssemblyName>
+		<RootNamespace>Arrma.Device.Basic</RootNamespace>
+		<Authors>aRRma</Authors>
+		<Copyright>arrma99@gmail.com</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageTags>Arrma, device, AT, protocol</PackageTags>
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>Arrma.Device.Basic.snk</AssemblyOriginatorKeyFile>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="BaseDevices\**" />
-    <EmbeddedResource Remove="BaseDevices\**" />
-    <None Remove="BaseDevices\**" />
-  </ItemGroup>
+	<PropertyGroup>
+		<Version>0.0.2</Version>
+		<Description>Пакет базовой реализации протоколов периферийных устройств платежного терминала под .NET5</Description>
+		<PackageReleaseNotes>Фикс XML комментариев</PackageReleaseNotes>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Arrma.Device.Core\Arrma.Device.Core.csproj" />
-  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DocumentationFile>C:\Users\arrma_corsair\source\repos\arrma.device\Device\Arrma.Device.Basic\Arrma.Device.Basic.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="BaseDevices\**" />
+		<EmbeddedResource Remove="BaseDevices\**" />
+		<None Remove="BaseDevices\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Arrma.Device.Core\Arrma.Device.Core.csproj" />
+	</ItemGroup>
 
 </Project>

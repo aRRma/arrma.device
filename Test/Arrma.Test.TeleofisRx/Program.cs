@@ -37,8 +37,8 @@ namespace Arrma.Test.TeleofisRx
 
                 Console.WriteLine($"Modem port: {modem.PortName}\n\n");
 
-                await modem.BaseInitModemAsync();
-                modem.FillModemBaseData();
+                //await modem.BaseInitModemAsync();
+                //modem.FillModemBaseData();
 
 
                 if (modem.IsConnected)

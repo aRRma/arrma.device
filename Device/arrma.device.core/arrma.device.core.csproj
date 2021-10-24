@@ -1,31 +1,36 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <AssemblyName>Arrma.Device.Core</AssemblyName>
-    <RootNamespace>Arrma.Device.Core</RootNamespace>
-    <Authors>aRRma</Authors>
-    <Description>Проект базовой реализации работы с COM портом и транспорта для различных протоколов периферийных устройств под .NET5</Description>
-    <Copyright>arrma99@gmailcom</Copyright>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageTags>Arrma, device, serial, com, AT</PackageTags>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>Arrma.Device.Core.snk</AssemblyOriginatorKeyFile>
-	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-  </PropertyGroup>
-
 	<PropertyGroup>
-		<Version>0.0.1</Version>
-		<PackageReleaseNotes>Запус проекта</PackageReleaseNotes>
+		<TargetFramework>net5.0</TargetFramework>
+		<AssemblyName>Arrma.Device.Core</AssemblyName>
+		<RootNamespace>Arrma.Device.Core</RootNamespace>
+		<Authors>aRRma</Authors>
+		<Copyright>arrma99@gmailcom</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageTags>Arrma, device, serial, com, AT</PackageTags>
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>Arrma.Device.Core.snk</AssemblyOriginatorKeyFile>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="System.IO.Ports" Version="5.0.1" />
-  </ItemGroup>
+	<PropertyGroup>
+		<Version>0.0.2</Version>
+		<Description>Пакет базовой реализации работы с COM портом и транспорта для различных протоколов периферийных устройств под .NET5</Description>
+		<PackageReleaseNotes>Фикс XML комментариев</PackageReleaseNotes>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\arrma.device.interfaces\Arrma.Device.Interfaces.csproj" />
-    <ProjectReference Include="..\Arrma.Device.Util\Arrma.Device.Util.csproj" />
-  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DocumentationFile>C:\Users\arrma_corsair\source\repos\arrma.device\Device\Arrma.Device.Core\Arrma.Device.Core.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="System.IO.Ports" Version="5.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\arrma.device.interfaces\Arrma.Device.Interfaces.csproj" />
+		<ProjectReference Include="..\Arrma.Device.Util\Arrma.Device.Util.csproj" />
+	</ItemGroup>
 
 </Project>

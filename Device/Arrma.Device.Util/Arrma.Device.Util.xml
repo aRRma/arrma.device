@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Arrma.Device.Util</name>
+    </assembly>
+    <members>
+        <member name="M:Arrma.Device.Util.AtProtocol.AtProtocolUtil.CimiParse(System.Int32,System.Int32)">
+            <summary>
+            Парсинг кода IMSI (Mobile Subscriber Identity - типа оператора)
+            </summary>
+            <param name="mcc">Mobile Country Code — мобильный код страны</param>
+            <param name="imsi">International Mobile Subscriber Identity (IMSI) — международный идентификатор мобильного абонента </param>
+            <returns></returns>
+        </member>
+        <member name="M:Arrma.Device.Util.AtProtocol.AtProtocolUtil.CregParse(System.String)">
+            <summary>
+            Парсинг типа регистрации в сети
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Arrma.Device.Util.AtProtocol.AtProtocolUtil.CsqParse(System.Int32,System.Int32)">
+            <summary>
+            Парсинг показаний качества сигнала QoS
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Arrma.Device.Util.AtProtocol.AtProtocolUtil.CusdParse(System.String)">
+            <summary>
+            Парсинг ответа на USSD запрос баланса 
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Arrma.Device.Util.AtProtocol.AtProtocolUtil.UcsHexToString(System.String)">
+            <summary>
+            Преобразование строки из hex символов (2 байта) utf16 в строку
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Arrma.Device.Util.Crc.CrcUtil.GetCRC16Modbus(System.Byte[],System.Int32)">
+            <summary>
+            CRC16 Modbus
+            </summary>
+            <param name="data"></param>
+            <param name="size"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Arrma.Device.Util.Crc.CrcUtil.GetCRC16CCNet(System.Byte[],System.Int32)">
+            <summary>
+            CRC16 CCNet
+            </summary>
+            <param name="data"></param>
+            <param name="size"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Arrma.Device.Util.Crc.CrcUtil.GetCRC8Impuls(System.Byte[],System.Int32)">
+            <summary>
+            CRC8 Impuls
+            </summary>
+            <param name="data"></param>
+            <param name="size"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Arrma.Device.Basic</name>
+    </assembly>
+    <members>
+        <member name="M:Arrma.Device.Basic.Protocol.At.AtProtocol.PingModem">
+            <summary>
+            Пинг модема. Команда AT.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Arrma.Device.Basic.Protocol.At.AtProtocol.EchoDisable">
+            <summary>
+            Отключить эхо. Команда ATE0.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Arrma.Device.Basic.Protocol.At.AtProtocol.AutoAnswerDisable">
+            <summary>
+            Отключение автоответа на звонок (после первого гудка). Команда ATS0=0.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Arrma.Device.Basic.Protocol.At.AtProtocol.AutoNumberDetectionEnable">
+            <summary>
+            Включить АОН. Команда AT+CLIP=1.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Arrma.Device.Basic.Protocol.At.AtProtocol.SmsTextModeEnable">
+            <summary>
+            Перейти в текстовый режим. Команда AT+CMGF=1.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Arrma.Device.Basic.Protocol.At.AtProtocol.GetManufactureId">
+            <summary>
+            Запросить идентификатор производителя модема. Команда AT+GMI
+            </summary>
+            <returns>Например строка "Telit"</returns>
+        </member>
+        <member name="M:Arrma.Device.Basic.Protocol.At.AtProtocol.GetModelId">
+            <summary>
+            Запросить идентификатор модели модуля модема. Команда AT+GMM
+            </summary>
+            <returns>Например строка "GL865-DUAL-V3.1"</returns>
+        </member>
+        <member name="M:Arrma.Device.Basic.Protocol.At.AtProtocol.GetSoftVersion">
+            <summary>
+            Запросить версию ревизии ПО модуля модема. Команда AT+GMR
+            </summary>
+            <returns>Например строка "16.01.173"</returns>
+        </member>
+        <member name="M:Arrma.Device.Basic.Protocol.At.AtProtocol.GetModemSerialNumber">
+            <summary>
+            Запросить IMEI (серийный номер как на корпусе модема). Команда AT#CGSN
+            </summary>
+            <returns>Например строка "353656102026806"</returns>
+        </member>
+        <member name="M:Arrma.Device.Basic.Protocol.At.AtProtocol.GetSimSerialNumber">
+            <summary>
+            Запросить серийный номер сим карты. Команда AT+CCID
+            </summary>
+            <returns>Например строка "8970199200456530032"</returns>
+        </member>
+        <member name="M:Arrma.Device.Basic.Protocol.At.AtProtocol.GetOperatorName">
+            <summary>
+            Запросить название оператора связи. Команда AT+COPS?
+            </summary>
+            <returns>Имя оператора связи в виде строки</returns>
+        </member>
+        <member name="M:Arrma.Device.Basic.Protocol.At.AtProtocol.GetOperatorType">
+            <summary>
+            Запросить IMSI (Mobile Subscriber Identity) тип оператора. Команда AT+CIMI
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Arrma.Device.Basic.Protocol.At.AtProtocol.ModemReboot">
+            <summary>
+            Перезагрузка модуля модема. Команда AT#REBOOT
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Arrma.Device.Basic.Protocol.At.AtProtocol.CheckNetworkRegType">
+            <summary>
+            Проверить тип регистрации в сети. Команда AT+CREG?
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Arrma.Device.Basic.Protocol.At.AtProtocol.CheckNetworkQoS">
+            <summary>
+            Проверит качество связи в сети. Команда AT+CSQ
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Arrma.Device.Basic.Protocol.At.AtProtocol.GetSimBalance(Arrma.Device.Enum.SimOperatorType)">
+            <summary>
+            Запросить баланс для конкретного оператора в PDU режиме. Команда AT+CUSD
+            </summary>
+            <param name="operatorType">Тип оператора из перечисления</param>
+            <returns>Баланс в виде строки</returns>
+        </member>
+        <member name="M:Arrma.Device.Basic.Protocol.At.AtProtocol.GetSimBalance(System.String)">
+            <summary>
+            Заапросить баланс через USSD в PDU режиме. Команда AT+CUSD
+            </summary>
+            <param name="ussd">Например: #100# для МТС и Мегафон, #102# для Билайн</param>
+            <returns>Баланс в виде строки</returns>
+        </member>
+        <member name="M:Arrma.Device.Basic.Protocol.At.AtProtocol.SendSmsOnNumber(System.ValueTuple{System.String,System.String})">
+            <summary>
+            Отправить смс на номер в PDU режиме (только латиница). Команда AT+CMGS 
+            </summary>
+            <param name="data">Кортеж строк: номер телефона, текст смс</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
