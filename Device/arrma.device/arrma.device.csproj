@@ -13,7 +13,7 @@
 		<PackageReleaseNotes>Запуск проекта</PackageReleaseNotes>
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>Arrma.Device.snk</AssemblyOriginatorKeyFile>
-		<SymbolPackageFormar>snupkg</SymbolPackageFormar>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
 	<PropertyGroup>
