@@ -4,7 +4,20 @@
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>Arrma.Device.Basic</AssemblyName>
     <RootNamespace>Arrma.Device.Basic</RootNamespace>
+    <Authors>aRRma</Authors>
+    <Description>Проект базовой реализации протоколов периферийных устройств платежного терминала под .NET5</Description>
+    <Copyright>arrma99@gmail.com</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>Arrma, device, AT, protocol</PackageTags>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Arrma.Device.Basic.snk</AssemblyOriginatorKeyFile>
+	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+
+	<PropertyGroup>
+		<Version>0.0.1</Version>
+		<PackageReleaseNotes>Запуск проекта. Добавлена базовая реализация AT протокола.</PackageReleaseNotes>
+	</PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="BaseDevices\**" />
