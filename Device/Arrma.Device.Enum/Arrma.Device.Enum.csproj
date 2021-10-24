@@ -2,6 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <Authors>aRRma</Authors>
+    <Description>Пакет перечислений для проекта Arrma.Device под .NET5</Description>
+    <Copyright>arrma99@gmail.com</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>Arrma, enum, AT</PackageTags>
+	  <SignAssembly>true</SignAssembly>
+	  <AssemblyOriginatorKeyFile>Arrma.Device.Enum.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+	  <Version>0.0.1</Version>
+	  <PackageReleaseNotes>Запуск проекта</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
