@@ -52,6 +52,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Arrma.Device.Core.SerialPort.SerialPortConfig">
+            <summary>
+            Конфигурация com порта
+            </summary>
+        </member>
         <member name="M:Arrma.Device.Core.SerialPort.SerialPortConfig.#ctor">
             <summary>
             Стандартные настройки 9600, 8бит, без четности, 1 стоповый, таймауты 100мс, порт COM1
@@ -67,10 +72,54 @@
             Структура пакета запроса AT протокола
             </summary>
         </member>
+        <member name="P:Arrma.Device.Core.Transport.AtRequest.Command">
+            <summary>
+            АТ команда
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Core.Transport.AtRequest.Data">
+            <summary>
+            Данные запроса
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Core.Transport.AtRequest.Length">
+            <summary>
+            Длина запроса
+            </summary>
+        </member>
+        <member name="M:Arrma.Device.Core.Transport.AtRequest.#ctor(System.String,System.String)">
+            <summary>
+            Передайте АТ команду и данные запроса
+            </summary>
+            <param name="command">АТ команда</param>
+            <param name="data">Данные запроса</param>
+        </member>
         <member name="T:Arrma.Device.Core.Transport.AtResponse">
             <summary>
             Структура пакета ответа AT протокола
             </summary>
+        </member>
+        <member name="P:Arrma.Device.Core.Transport.AtResponse.Data">
+            <summary>
+            Данные пакет ответа
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Core.Transport.AtResponse.Length">
+            <summary>
+            Длина пакета ответа
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.Core.Transport.AtResponse.Valid">
+            <summary>
+            Прошел ли пакет валидацию
+            </summary>
+        </member>
+        <member name="M:Arrma.Device.Core.Transport.AtResponse.#ctor(System.String,System.Boolean)">
+            <summary>
+            Передайте данные ответа и статус проверки пакета
+            </summary>
+            <param name="data"></param>
+            <param name="valid"></param>
         </member>
         <member name="P:Arrma.Device.Core.Transport.At.AtTransport.SendingResponseAttempt">
             <summary>
@@ -79,11 +128,11 @@
         </member>
         <member name="M:Arrma.Device.Core.Transport.At.AtTransport.SearchPort(Arrma.Device.Interfaces.Protocol.IRequest{System.String},System.Int32)">
             <summary>
-            Ищет COM порт к которому подключено устройство
+            Найти COM порт к которому подключено устройство. 
             </summary>
-            <param name="request">Пакет команды для запроса</param>
-            <param name="byteAnswer">Количество байт полного ответа на команду запроса</param>
-            <returns></returns>
+            <param name="request">Команда для поиска устройства</param>
+            <param name="byteAnswer">Длина ответа в байтах для команды поиска устройства</param>
+            <returns>Если порт устройства найден, то вернется true.</returns>
         </member>
         <member name="M:Arrma.Device.Core.Transport.At.AtTransport.SendCommand(Arrma.Device.Interfaces.Protocol.IRequest{System.String},System.Int32,System.Int32)">
             <summary>
@@ -92,7 +141,7 @@
             <param name="request">Пакет команды</param>
             <param name="timeout">Таймаут ответа на команду</param>
             <param name="byteAnswer">Количество байт полного ответа на команду (по умолчанию 6 байт для ответа OK)</param>
-            <returns></returns>
+            <returns>Возвращает пакет ответа</returns>
         </member>
     </members>
 </doc>

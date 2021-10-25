@@ -81,7 +81,7 @@
         </member>
         <member name="P:Arrma.Device.Interfaces.Device.Base.IBaseModem.QoSInfo">
             <summary>
-            Качество сигнала
+            Качество сигнала в сети
             </summary>
         </member>
         <member name="P:Arrma.Device.Interfaces.Device.Base.IBaseModem.SimSerialId">
@@ -91,7 +91,7 @@
         </member>
         <member name="P:Arrma.Device.Interfaces.Device.Base.IBaseModem.SimOperatorName">
             <summary>
-            Название оператора мобильной связи
+            Оператора мобильной связи
             </summary>
         </member>
         <member name="P:Arrma.Device.Interfaces.Device.Base.IBaseModem.SimOperator">
@@ -191,12 +191,12 @@
         </member>
         <member name="P:Arrma.Device.Interfaces.Device.ITeleofisRx.ManufactureId">
             <summary>
-            Идент. производителя модема
+            Идентификатор производителя модема
             </summary>
         </member>
         <member name="P:Arrma.Device.Interfaces.Device.ITeleofisRx.ModelId">
             <summary>
-            Идент. модели модуля модема
+            Идентификатор модели модуля модема
             </summary>
         </member>
         <member name="T:Arrma.Device.Interfaces.Device.IVivoPay">

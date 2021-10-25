@@ -4,6 +4,11 @@
         <name>Arrma.Device.Basic</name>
     </assembly>
     <members>
+        <member name="P:Arrma.Device.Basic.Protocol.At.AtProtocol.Commands">
+            <summary>
+            Словарь команд AT протокола
+            </summary>
+        </member>
         <member name="M:Arrma.Device.Basic.Protocol.At.AtProtocol.PingModem">
             <summary>
             Пинг модема. Команда AT.
@@ -60,7 +65,7 @@
         </member>
         <member name="M:Arrma.Device.Basic.Protocol.At.AtProtocol.GetSimSerialNumber">
             <summary>
-            Запросить серийный номер сим карты. Команда AT+CCID
+            Запросить серийный номер SIM-карты. Команда AT+CCID
             </summary>
             <returns>Например строка "8970199200456530032"</returns>
         </member>

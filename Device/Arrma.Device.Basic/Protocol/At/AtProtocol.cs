@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
-using Arrma.Device.Core.SerialPort;
+﻿using Arrma.Device.Core.SerialPort;
 using Arrma.Device.Core.Transport;
 using Arrma.Device.Core.Transport.At;
-using Arrma.Device.Interfaces.Logger;
 using Arrma.Device.Enum;
 using Arrma.Device.Interfaces.Device.Base;
+using Arrma.Device.Interfaces.Logger;
 using Arrma.Device.Util.AtProtocol;
+using System;
+using System.Collections.Generic;
 
 namespace Arrma.Device.Basic.Protocol.At
 {
@@ -16,6 +15,9 @@ namespace Arrma.Device.Basic.Protocol.At
         private Dictionary<AtCommand, string> _commands;
         private Dictionary<AtCommandEnd, string> _commandsEnd;
 
+        /// <summary>
+        /// Словарь команд AT протокола
+        /// </summary>
         public Dictionary<AtCommand, string> Commands => _commands;
 
         public AtProtocol(SerialPortConfig config, ILogger logger = null) : base(config, logger)
@@ -137,7 +139,7 @@ namespace Arrma.Device.Basic.Protocol.At
                 return false;
             }
         }
-   #endregion
+        #endregion
 
         #region Информация об модеме
         /// <summary>
@@ -213,7 +215,7 @@ namespace Arrma.Device.Basic.Protocol.At
             }
         }
         /// <summary>
-        /// Запросить серийный номер сим карты. Команда AT+CCID
+        /// Запросить серийный номер SIM-карты. Команда AT+CCID
         /// </summary>
         /// <returns>Например строка "8970199200456530032"</returns>
         public string GetSimSerialNumber()

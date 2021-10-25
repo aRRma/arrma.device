@@ -12,7 +12,7 @@ namespace Arrma.Device.Interfaces.Device.Base
         /// </summary>
         public NetworkRegType NetworkRegistration { get; set; }
         /// <summary>
-        /// Качество сигнала
+        /// Качество сигнала в сети
         /// </summary>
         public QosInfo QoSInfo { get; set; }
         /// <summary>
@@ -20,7 +20,7 @@ namespace Arrma.Device.Interfaces.Device.Base
         /// </summary>
         public string SimSerialId { get; set; }
         /// <summary>
-        /// Название оператора мобильной связи
+        /// Оператора мобильной связи
         /// </summary>
         public string SimOperatorName { get; set; }
         /// <summary>

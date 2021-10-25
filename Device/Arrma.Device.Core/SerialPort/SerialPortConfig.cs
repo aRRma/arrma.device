@@ -2,6 +2,9 @@
 
 namespace Arrma.Device.Core.SerialPort
 {
+    /// <summary>
+    /// Конфигурация com порта
+    /// </summary>
     public class SerialPortConfig
     {
         public string Name { get; set; }

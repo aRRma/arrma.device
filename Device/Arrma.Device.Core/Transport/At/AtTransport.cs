@@ -31,11 +31,11 @@ namespace Arrma.Device.Core.Transport.At
         }
 
         /// <summary>
-        /// Ищет COM порт к которому подключено устройство
+        /// Найти COM порт к которому подключено устройство. 
         /// </summary>
-        /// <param name="request">Пакет команды для запроса</param>
-        /// <param name="byteAnswer">Количество байт полного ответа на команду запроса</param>
-        /// <returns></returns>
+        /// <param name="request">Команда для поиска устройства</param>
+        /// <param name="byteAnswer">Длина ответа в байтах для команды поиска устройства</param>
+        /// <returns>Если порт устройства найден, то вернется true.</returns>
         public bool SearchPort(IRequest<string> request, int byteAnswer = 0)
         {
             var сomPorts = GetSortComPorts();
@@ -68,7 +68,7 @@ namespace Arrma.Device.Core.Transport.At
         /// <param name="request">Пакет команды</param>
         /// <param name="timeout">Таймаут ответа на команду</param>
         /// <param name="byteAnswer">Количество байт полного ответа на команду (по умолчанию 6 байт для ответа OK)</param>
-        /// <returns></returns>
+        /// <returns>Возвращает пакет ответа</returns>
         public IResponse<string> SendCommand(IRequest<string> request, int timeout = DefaultTimeout, int byteAnswer = 6)
         {
             // если порт не открыт выходим
