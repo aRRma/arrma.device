@@ -6,11 +6,11 @@
     public interface IResponse<T>
     {
         /// <summary>
-        /// Обобщенный массив пакет ответа
+        /// Данные пакет ответа
         /// </summary>
         public T Data { get; }
         /// <summary>
-        /// Длина пакета
+        /// Длина пакета ответа
         /// </summary>
         public int Length { get; }
         /// <summary>

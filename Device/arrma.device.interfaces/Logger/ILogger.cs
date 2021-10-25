@@ -1,5 +1,4 @@
 ﻿using System;
-using Arrma.Device.Enum;
 
 namespace Arrma.Device.Interfaces.Logger
 {

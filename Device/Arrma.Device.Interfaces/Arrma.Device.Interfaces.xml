@@ -260,8 +260,25 @@
         </member>
         <member name="T:Arrma.Device.Interfaces.Protocol.IProtocol`1">
             <summary>
-            Интерфейс протокола
+            Обобщенный интерфейс протокола
             </summary>
+        </member>
+        <member name="M:Arrma.Device.Interfaces.Protocol.IProtocol`1.SearchPort(Arrma.Device.Interfaces.Protocol.IRequest{`0},System.Int32)">
+            <summary>
+            Найти COM порт к которому подключено устройство. 
+            </summary>
+            <param name="request">Команда для поиска устройства</param>
+            <param name="byteAnswer">Длина ответа в байтах для команды поиска устройства</param>
+            <returns>Если порт устройства найден, то вернется true.</returns>
+        </member>
+        <member name="M:Arrma.Device.Interfaces.Protocol.IProtocol`1.SendCommand(Arrma.Device.Interfaces.Protocol.IRequest{`0},System.Int32,System.Int32)">
+            <summary>
+            Формирует полностью команду и отправляет ее устройству (если требуется, то читает ответ). Если byteAnswer не задан, то ответ не ожидается.
+            </summary>
+            <param name="request">Пакет команды</param>
+            <param name="timeout">Таймаут ответа на команду</param>
+            <param name="byteAnswer">Количество байт полного ответа на команду (по умолчанию 6 байт для ответа OK)</param>
+            <returns>Возвращает пакет ответа</returns>
         </member>
         <member name="T:Arrma.Device.Interfaces.Protocol.IRequest`1">
             <summary>
@@ -270,17 +287,17 @@
         </member>
         <member name="P:Arrma.Device.Interfaces.Protocol.IRequest`1.Command">
             <summary>
-            Код команды запроса
+            Команда запроса
             </summary>
         </member>
         <member name="P:Arrma.Device.Interfaces.Protocol.IRequest`1.Data">
             <summary>
-            Обобщенный массив пакета запроса
+            Данные запроса
             </summary>
         </member>
         <member name="P:Arrma.Device.Interfaces.Protocol.IRequest`1.Length">
             <summary>
-            Длина запроса
+            Длина пакета запроса
             </summary>
         </member>
         <member name="T:Arrma.Device.Interfaces.Protocol.IResponse`1">
@@ -290,12 +307,12 @@
         </member>
         <member name="P:Arrma.Device.Interfaces.Protocol.IResponse`1.Data">
             <summary>
-            Обобщенный массив пакет ответа
+            Данные пакет ответа
             </summary>
         </member>
         <member name="P:Arrma.Device.Interfaces.Protocol.IResponse`1.Length">
             <summary>
-            Длина пакета
+            Длина пакета ответа
             </summary>
         </member>
         <member name="P:Arrma.Device.Interfaces.Protocol.IResponse`1.Valid">

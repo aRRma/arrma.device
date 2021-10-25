@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Arrma.Device.Interfaces.Protocol
+﻿namespace Arrma.Device.Interfaces.Protocol
 {
     /// <summary>
     /// Интерфейс пакета запроса
@@ -8,16 +6,16 @@ namespace Arrma.Device.Interfaces.Protocol
     public interface IRequest<T>
     {
         /// <summary>
-        /// Код команды запроса
+        /// Команда запроса
         /// </summary>
         public T Command { get; set; }
         /// <summary>
-        /// Обобщенный массив пакета запроса
+        /// Данные запроса
         /// </summary>
         public T Data { get; set; }
         /// <summary>
-        /// Длина запроса
+        /// Длина пакета запроса
         /// </summary>
-        public int Length { get; set; }
+        public int Length { get; }
     }
 }
