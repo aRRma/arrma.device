@@ -4,5 +4,126 @@
         <name>Arrma.Device</name>
     </assembly>
     <members>
+        <member name="T:Arrma.Device.TeleofisRx">
+            <summary>
+            Модем Teleofis серии RX
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.TeleofisRx.Name">
+            <summary>
+            Название устройства
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.TeleofisRx.Address">
+            <summary>
+            Адрес устройства в сети (не актуально)
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.TeleofisRx.InitDone">
+            <summary>
+            Статус инициализации устройства
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.TeleofisRx.SerialNumber">
+            <summary>
+            Серийный номер
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.TeleofisRx.FirmwareVersion">
+            <summary>
+            Версия прошивки
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.TeleofisRx.Interface">
+            <summary>
+            Тип интерфейса устройства
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.TeleofisRx.Protocol">
+            <summary>
+            Тип протокола устройства
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.TeleofisRx.NetworkRegistration">
+            <summary>
+            Тип регистрации модема в сети
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.TeleofisRx.QoSInfo">
+            <summary>
+            Качество сигнала в сети
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.TeleofisRx.SimSerialId">
+            <summary>
+            Серийный номер SIM-карты
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.TeleofisRx.SimOperatorName">
+            <summary>
+            Оператора мобильной связи
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.TeleofisRx.SimOperator">
+            <summary>
+            Типа оператора мобильной связи
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.TeleofisRx.Balance">
+            <summary>
+            Баланс на сим карте
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.TeleofisRx.ManufactureId">
+            <summary>
+            Идентификатор производителя модема
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.TeleofisRx.ModelId">
+            <summary>
+            Идентификатор модели модуля модема
+            </summary>
+        </member>
+        <member name="P:Arrma.Device.TeleofisRx.OutputSmsList">
+            <summary>
+            Список смс на отправку
+            </summary>
+        </member>
+        <member name="M:Arrma.Device.TeleofisRx.#ctor(Arrma.Device.Core.SerialPort.SerialPortConfig,Arrma.Device.Interfaces.Logger.ILogger)">
+            <summary>
+            Передайте конфиг com порта и дополнительно логгер для создания объекта модема
+            </summary>
+            <param name="config">Конфигурация com порта</param>
+            <param name="logger">Логгер</param>
+        </member>
+        <member name="M:Arrma.Device.TeleofisRx.SearchPort">
+            <summary>
+            Найти COM порт к которому подключено устройство. Название порта сохранится в соотв. поле объекта.
+            </summary>
+            <returns>Если порт устройства найден, то вернется true</returns>
+        </member>
+        <member name="M:Arrma.Device.TeleofisRx.BaseInitModemAsync">
+            <summary>
+            Произвести базовую настройку модема: отключить эхо, автоответ на звонок, включить АОН, текстовый режим. 
+            </summary>
+            <returns>Вернет true если настройка прошла успешно</returns>
+        </member>
+        <member name="M:Arrma.Device.TeleofisRx.FillModemBaseData">
+            <summary>
+            Заполнить базовую информацию о модеме.
+            </summary>
+        </member>
+        <member name="M:Arrma.Device.TeleofisRx.StartCheckSmsTimer">
+            <summary>
+            Запустить таймер сканирования списка смс на отправку
+            </summary>
+            <returns>true если таймер успешно запустился</returns>
+        </member>
+        <member name="M:Arrma.Device.TeleofisRx.StopCheckSmsTimer">
+            <summary>
+            Остановить таймер сканирования списка смс на отправку
+            </summary>
+            <returns>true если таймер успешно остановился</returns>
+        </member>
     </members>
 </doc>
