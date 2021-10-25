@@ -26,6 +26,10 @@
 		<DocumentationFile>C:\Users\arrma_corsair\source\repos\arrma.device\Device\Arrma.Device\Arrma.Device.xml</DocumentationFile>
 		<Optimize>false</Optimize>
 	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <DocumentationFile>C:\Users\arrma_corsair\source\repos\arrma.device\Device\Arrma.Device\Arrma.Device.xml</DocumentationFile>
+	</PropertyGroup>
 	<ItemGroup>
 		<Compile Remove="Devices\**" />
 		<EmbeddedResource Remove="Devices\**" />

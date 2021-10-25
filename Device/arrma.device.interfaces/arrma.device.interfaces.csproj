@@ -22,6 +22,10 @@
 		<DocumentationFile>C:\Users\arrma_corsair\source\repos\arrma.device\Device\Arrma.Device.Interfaces\Arrma.Device.Interfaces.xml</DocumentationFile>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <DocumentationFile>C:\Users\arrma_corsair\source\repos\arrma.device\Device\Arrma.Device.Interfaces\Arrma.Device.Interfaces.xml</DocumentationFile>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<Compile Remove="DataBase\**" />
 		<EmbeddedResource Remove="DataBase\**" />

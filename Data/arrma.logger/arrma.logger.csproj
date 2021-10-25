@@ -6,4 +6,8 @@
     <RootNamespace>Arrma.Logger</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>C:\Users\arrma_corsair\source\repos\arrma.device\Data\Arrma.Logger\Arrma.Logger.xml</DocumentationFile>
+  </PropertyGroup>
+
 </Project>

@@ -20,4 +20,8 @@
 		<DocumentationFile>C:\Users\arrma_corsair\source\repos\arrma.device\Device\Arrma.Device.Enum\Arrma.Device.Enum.xml</DocumentationFile>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <DocumentationFile>C:\Users\arrma_corsair\source\repos\arrma.device\Device\Arrma.Device.Enum\Arrma.Device.Enum.xml</DocumentationFile>
+	</PropertyGroup>
+
 </Project>

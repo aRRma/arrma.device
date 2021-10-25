@@ -24,6 +24,10 @@
 		<DocumentationFile>C:\Users\arrma_corsair\source\repos\arrma.device\Device\Arrma.Device.Basic\Arrma.Device.Basic.xml</DocumentationFile>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <DocumentationFile>C:\Users\arrma_corsair\source\repos\arrma.device\Device\Arrma.Device.Basic\Arrma.Device.Basic.xml</DocumentationFile>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<Compile Remove="BaseDevices\**" />
 		<EmbeddedResource Remove="BaseDevices\**" />
