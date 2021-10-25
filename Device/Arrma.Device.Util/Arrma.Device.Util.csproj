@@ -16,7 +16,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<Version>0.0.2</Version>
+		<Version>0.0.3</Version>
 		<Description>Пакет утилит для работы с периферийными устройствами платежного терминала под .NET5</Description>
 		<PackageReleaseNotes>Фикс XML комментариев</PackageReleaseNotes>
 	</PropertyGroup>
